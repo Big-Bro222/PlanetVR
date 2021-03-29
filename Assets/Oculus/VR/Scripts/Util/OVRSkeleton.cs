@@ -418,10 +418,10 @@ public class OVRSkeleton : MonoBehaviour
 
 					if (capsuleGO.activeSelf)
 					{
-						//Added to fix the fingertip problem
-						capsuleGO.SetActive(false);                  //Added by Qi
-						capsuleGO.SetActive(true);                  //Added by Qi
-						capsule.CapsuleRigidbody.MovePosition(bone.position);
+                        //Added to fix the fingertip problem
+                        capsuleGO.SetActive(false);                  //Added by Qi
+                        capsuleGO.SetActive(true);                  //Added by Qi
+                        capsule.CapsuleRigidbody.MovePosition(bone.position);
 						capsule.CapsuleRigidbody.MoveRotation(bone.rotation);
 					}
 					else

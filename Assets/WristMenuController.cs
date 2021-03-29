@@ -10,6 +10,8 @@ public class WristMenuController : MonoBehaviour
     [SerializeField] OVRPlugin.Hand handType;
 
     private OVRHand _menuHand;
+    private OVRBone _menuBone;
+    private GameObject[] BoneIndicatior;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +28,24 @@ public class WristMenuController : MonoBehaviour
         {
             Debug.LogError("Unknown Hand Type");
         }
+
+
+        //int BoneIndex = (int)OVRSkeleton.BoneId.Hand_WristRoot;
+        //Debug.Log(BoneIndex);
+        _menuBone = _menuHand.GetComponent<OVRSkeleton>().Bones[0];
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = _menuHand.PointerPose.position;
-        transform.rotation = _menuHand.PointerPose.rotation;
+        transform.position = _menuBone.Transform.position;
+        transform.rotation = _menuBone.Transform.rotation;
+
     }
+
+        //foreach(OVRBone bone in skeleton.Bones) {
+        //if (bone.Id == OVRSkeleton.BoneId.Hand_IndexTip) {
+        //    bone.Transform.gameObject.AddComponent<SphereCollider>();
+        //}
+    //}
 }
