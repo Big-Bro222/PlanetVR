@@ -19,7 +19,7 @@ namespace OculusSampleFramework
 	/// </summary>
 	public class ButtonTriggerZone : MonoBehaviour, ColliderZone
 	{
-		[SerializeField] private GameObject _parentInteractableObj = null;
+		[SerializeField] public GameObject _parentInteractableObj = null;
 
 		public Collider Collider { get; private set; }
 		public Interactable ParentInteractable { get; private set; }

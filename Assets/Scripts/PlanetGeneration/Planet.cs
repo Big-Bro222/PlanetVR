@@ -34,7 +34,7 @@ public class Planet : MonoBehaviour
     Texture2D texture;
 
 
-    private void Start()
+    private void Awake()
     {
 
         elevationMinMax = new MinMax();

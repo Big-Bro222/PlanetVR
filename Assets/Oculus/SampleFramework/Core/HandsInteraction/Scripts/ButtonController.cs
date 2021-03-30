@@ -23,13 +23,13 @@ namespace OculusSampleFramework
 		private const float ENTRY_DOT_THRESHOLD = 0.8f;
 		private const float PERP_DOT_THRESHOLD = 0.5f;
 
-		[SerializeField] private GameObject _proximityZone = null;
-		[SerializeField] private GameObject _contactZone = null;
-		[SerializeField] private GameObject _actionZone = null;
+		[SerializeField] public GameObject _proximityZone = null;
+		[SerializeField] public GameObject _contactZone = null;
+		[SerializeField] public GameObject _actionZone = null;
 		[SerializeField] private ContactTest[] _contactTests = null;
 		// for positive side tests, the contact position must be on the positive side of the plane
 		// determined by this transform
-		[SerializeField] private Transform _buttonPlaneCenter = null;
+		[SerializeField] public Transform _buttonPlaneCenter = null;
 
 		// make sure press is coming from "positive" side of button, i.e. above it
 		[SerializeField] private bool _makeSureToolIsOnPositiveSide = true;

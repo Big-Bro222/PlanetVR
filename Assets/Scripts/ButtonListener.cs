@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using OculusSampleFramework;
 using UnityEngine.Events;
+using System;
 
 public class ButtonListener : MonoBehaviour
 {
     // Start is called before the first frame update
-    public UnityEvent proximityEvent;
-    public UnityEvent contactEvent;
-    public UnityEvent actionEvent;
-    public UnityEvent defaultEvent;
+    public event Action proximityTrigger;
+    public event Action contactTrigger;
+    public event Action actionTrigger;
+    public event Action defaultTrigger;
 
     void Start()
     {
         GetComponent<ButtonController>().InteractableStateChanged.AddListener(InitiateEvent);
-
     }
 
     // Update is called once per frame
@@ -23,19 +23,19 @@ public class ButtonListener : MonoBehaviour
     {
         if (state.NewInteractableState == InteractableState.ProximityState)
         {
-            proximityEvent.Invoke();
+            proximityTrigger();
         }
         else if (state.NewInteractableState == InteractableState.ContactState)
         {
-            contactEvent.Invoke();
+            contactTrigger();
         }
         else if (state.NewInteractableState == InteractableState.ActionState)
         {
-            actionEvent.Invoke();
+            actionTrigger();
         }
         else 
         {
-            defaultEvent.Invoke();
+            defaultTrigger();
         }
     }
 }

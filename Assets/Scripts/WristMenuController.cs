@@ -38,9 +38,11 @@ public class WristMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = _menuBone.Transform.position;
-        transform.rotation = _menuBone.Transform.rotation;
-
+        if (_menuBone != null)
+        {
+            transform.position = _menuBone.Transform.position;
+            transform.rotation = _menuBone.Transform.rotation;
+        }
     }
 
         //foreach(OVRBone bone in skeleton.Bones) {

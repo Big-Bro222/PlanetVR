@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using OculusSampleFramework;
+using DG.Tweening;
 public class PrefabCreator : MonoBehaviour
 {
     // Start is called before the first frame update
     GameObject newPrefab;
     bool grabble;
+    Sequence s;
     void Start()
     {
         grabble = true;
+        s = DOTween.Sequence();
+
     }
 
     // Update is called once per frame
@@ -29,8 +33,7 @@ public class PrefabCreator : MonoBehaviour
             newPrefab.GetComponent<OVRGrabbable>().enabled = false;
             transform.localScale *= 1.5f;
             UIController.Instance.EnterUIState(UIController.UIstate.Selecting);
-            UIController.Instance.currentFocusPlanet = gameObject;
-            grabble = false;
+            UIController.Instance.currentFocusPlanet = gameObject;            
         }
 
 
@@ -42,15 +45,20 @@ public class PrefabCreator : MonoBehaviour
         {
             VRDebug.Instance.Log("End");
             newPrefab.GetComponent<OVRGrabbable>().enabled = true;
-            Invoke("setpos", 3f);
-            UIController.Instance.EnterUIState(UIController.UIstate.General);
-        }
-        
-    }
+            grabble = false;
+            //s.Append(UIController.Instance.currentFocusPlanet.transform.DORotate())
+            s.PrependInterval(4);
+            s.Append(UIController.Instance.currentFocusPlanet.transform.DOMove(UIController.Instance.OrbitPoint.transform.position, 3f).SetEase(Ease.InOutCubic));
+            s.Join(UIController.Instance.currentFocusPlanet.transform.DOScale(Vector3.one,3f).SetEase(Ease.InOutCubic));
+            VRDebug.Instance.Log("TweenEnd");
+            s.OnComplete(() => {
+                UIController.Instance.EnterUIState(UIController.UIstate.General);
+                gameObject.GetComponent<CubeDebugger>().enabled = true;
+            });
+            
 
-    private void setpos()
-    {
-        UIController.Instance.currentFocusPlanet.transform.position = UIController.Instance.OrbitPoint.transform.position;
+        }
+
     }
 
 }
