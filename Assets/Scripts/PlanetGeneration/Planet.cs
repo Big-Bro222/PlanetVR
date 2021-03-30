@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
+[System.Serializable]
 public class Planet : MonoBehaviour
 {
     [Range(4, 256)]
     public int resolution = 10;
-    public bool autoUpdate = true;
     public enum FaceRenderMask { All, Top, Bottom, Left, Right, Front, Back };
+
+    public enum TerrainType { Land,Moutain};
+    public enum ParameterType { Strength,Roughness, Centre, Minvalue, Weight} 
+
+
     public FaceRenderMask faceRenderMask;
     public MinMax elevationMinMax;
 
@@ -19,8 +24,8 @@ public class Planet : MonoBehaviour
     [SerializeField] float planetRadius;
     [SerializeField] PlanetNoiseLayer[] noiseLayers;
     [SerializeField] Gradient gradient;
-    [SerializeField] ShapeGenerator shapeGenerator;
-    [SerializeField] ColourGenerator colourGenerator;
+    [SerializeField] public ShapeGenerator shapeGenerator;
+    [SerializeField] public ColourGenerator colourGenerator;
 
     SphereCollider sphereCollider;
     Vector3[] directions = { Vector3.up, Vector3.down, Vector3.left, Vector3.right, Vector3.forward, Vector3.back };
@@ -29,23 +34,37 @@ public class Planet : MonoBehaviour
     Texture2D texture;
 
 
-
-
-
-    ColourSettings colourSettings;
     private void Start()
     {
-        //colourSettings = colourGenerator.settings;
-        //colourGenerator.UpdateSettings();
 
-        //Synchronize the color information of the globel at the beginning of the project.
-        gradient = colourGenerator.settings.gradient;
-        planetMaterial=colourGenerator.settings.planetMaterial;
-        texture = new Texture2D(textureResolution, 1);
+        elevationMinMax = new MinMax();
+        sphereCollider = GetComponent<SphereCollider>();
+        PresetColor();
+        PresetShape();
 
+        
+        
+       
+        if (meshFilters == null || meshFilters.Length == 0)
+        {
+            meshFilters = new MeshFilter[6];
+        }
+        terrainFaces = new TerrainFace[6];
+
+
+
+        CalculateVectors();
+        GenerateMesh();
+        GenerateColours();
+        
+
+    }
+
+    private void PresetShape()
+    {
         //Synchronize the shape information of the globel at the beginning of the project.
         noiseLayers = new PlanetNoiseLayer[shapeGenerator.noiseLayers.Length];
-        for(int i = 0; i < noiseLayers.Length; i++)
+        for (int i = 0; i < noiseLayers.Length; i++)
         {
             noiseLayers[i] = new PlanetNoiseLayer();
             noiseLayers[i].enabled = true;
@@ -56,30 +75,26 @@ public class Planet : MonoBehaviour
             noiseLayers[i].baseRoughness = shapeGenerator.noiseLayers[i].noiseSettings.baseRoughness;
             noiseLayers[i].roughness = shapeGenerator.noiseLayers[i].noiseSettings.roughness;
             noiseLayers[i].persistence = shapeGenerator.noiseLayers[i].noiseSettings.persistence;
-            noiseLayers[i].centre= shapeGenerator.noiseLayers[i].noiseSettings.centre;
-            noiseLayers[i].minValue= shapeGenerator.noiseLayers[i].noiseSettings.minValue;
+            noiseLayers[i].centre = shapeGenerator.noiseLayers[i].noiseSettings.centre;
+            noiseLayers[i].minValue = shapeGenerator.noiseLayers[i].noiseSettings.minValue;
 
             noiseLayers[i].weightMultiplier = .8f;
         }
 
         planetRadius = shapeGenerator.settings.planetRadius;
 
-
-        elevationMinMax = new MinMax();
-        sphereCollider = GetComponent<SphereCollider>();
         sphereCollider.radius = planetRadius;
-        if (meshFilters == null || meshFilters.Length == 0)
-        {
-            meshFilters = new MeshFilter[6];
-        }
-        terrainFaces = new TerrainFace[6];
 
+        
+    }
 
+    private void PresetColor()
+    {
 
-        CalculateVectors();
-        GenerateColours();
-        GenerateMesh();
-
+        //Synchronize the color information of the globel at the beginning of the project.
+        gradient = colourGenerator.settings.gradient;
+        planetMaterial = colourGenerator.settings.planetMaterial;
+        texture = new Texture2D(textureResolution, 1);
     }
 
     private void CalculateVectors()
@@ -106,14 +121,6 @@ public class Planet : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //each time the shapesetting changes, run this code
-        //todo: link with shapesettings.
-        //CalculateVectors();
-        //GenerateColours();
-        //GenerateMesh();
-    }
 
     public void GenerateNewSettings()
     {
@@ -122,46 +129,97 @@ public class Planet : MonoBehaviour
         GenerateMesh();
     }
 
-    void GenerateMesh()
+    public void OnAssignShapeSettingPrefab(ShapeGenerator shapeGenerator)
     {
-        foreach (TerrainFace face in terrainFaces)
-        {
-            face.ConstructMesh();
-        }
-        UpdateElevation(elevationMinMax);
-        sphereCollider.radius = planetRadius;
-
+        //if assign a brand new shape preset generator;
+        this.shapeGenerator = shapeGenerator;
+        PresetShape();
+        CalculateVectors();
+        GenerateMesh();
     }
 
-    void GenerateColours()
+    public void OnAssignColorSettingPrefab(ColourGenerator colourGenerator)
     {
-        UpdateColours();
+        //if assign a brand new color preset generator;
+        this.colourGenerator = colourGenerator;
+        PresetColor();
+        CalculateVectors();
+        GenerateColours();
     }
 
-
-    public void OnShapeSettingsUpdated()
+    public void OnShapeSettingsUpdated(TerrainType terrainType, ParameterType parameterType, float parameter)
     {
-        if (autoUpdate)
+        int layerIndex = (int)terrainType;
+        switch (parameterType)
         {
-            CalculateVectors();
-            GenerateMesh();
+            case ParameterType.Strength:
+                noiseLayers[layerIndex].strength=parameter;
+                break;
+            case ParameterType.Roughness:
+                noiseLayers[layerIndex].roughness = parameter;
+                break;
+            case ParameterType.Minvalue:
+                noiseLayers[layerIndex].minValue = parameter;
+                break;
+            case ParameterType.Weight:
+                noiseLayers[layerIndex].weightMultiplier = parameter;
+                break;
+            default:
+                Debug.LogError("Undefined parameter");
+                break;
         }
+        CalculateVectors();
+        GenerateMesh();
+    }
+
+    public void OnShapeSettingsUpdated(int resolution)
+    {
+        this.resolution = resolution;
+        CalculateVectors();
+        GenerateMesh();
+    }
+
+    public void OnShapeSettingsUpdated(float radius)
+    {
+        planetRadius = radius;
+        CalculateVectors();
+        GenerateMesh();
+    }
+
+    public void OnShapeSettingsUpdated(TerrainType terrainType, Vector3 centre)
+    {
+        if (terrainType == TerrainType.Land)
+        {
+            noiseLayers[0].centre = centre;
+        }
+        else if(terrainType == TerrainType.Moutain)
+        {
+            noiseLayers[1].centre = centre;
+        }
+        else
+        {
+            Debug.LogError("Cannot find the TerrainType");
+        }
+        CalculateVectors();
+        GenerateMesh();
     }
 
     public void OnColourSettingsUpdated()
     {
-        if (autoUpdate)
-        {
             CalculateVectors();
             GenerateColours();
-        }
     }
-    public void UpdateElevation(MinMax elevationMinMax)
+
+
+    private void GenerateColours()
+    {
+        UpdateColours();
+    }
+    private void UpdateElevation(MinMax elevationMinMax)
     {
         planetMaterial.SetVector("_elevationMinMax", new Vector4(elevationMinMax.Min, elevationMinMax.Max));
     }
-
-    public void UpdateColours()
+    private void UpdateColours()
     {
         Color[] colours = new Color[textureResolution];
         for (int i = 0; i < textureResolution; i++)
@@ -172,10 +230,20 @@ public class Planet : MonoBehaviour
         texture.Apply();
         planetMaterial.SetTexture("_texture", texture);
     }
+    private void GenerateMesh()
+    {
+        foreach (TerrainFace face in terrainFaces)
+        {
+            face.ConstructMesh();
+        }
+        UpdateElevation(elevationMinMax);
+        planetRadius = shapeGenerator.settings.planetRadius;
+        sphereCollider.radius = planetRadius;
 
+
+    }
     public Vector3 CalculatePointOnPlanet(Vector3 pointOnUnitSphere)
     {
-        //if (noiseFilters == null||noiseFilters.Length!=noiseLayers.Length)
         if (true)
             {
                 noiseFilters = new NoiseFilter[noiseLayers.Length];
@@ -191,7 +259,7 @@ public class Planet : MonoBehaviour
                 noiseLayers[i].minValue,
                 noiseLayers[i].weightMultiplier);
             }
-            elevationMinMax = new MinMax();
+            //elevationMinMax = new MinMax();
         }
 
         float firstLayerValue = 0;
