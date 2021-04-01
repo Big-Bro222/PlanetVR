@@ -22,7 +22,7 @@ public class OVRGrabber : MonoBehaviour
     // Grip trigger thresholds for picking up objects, with some hysteresis.
     public float grabBegin = 0.55f;
     public float grabEnd = 0.35f;
-
+    public bool ismovable=true;
     // Demonstrates parenting the held object to the hand's transform when grabbed.
     // When false, the grabbed object is moved every FixedUpdate using MovePosition.
     // Note that MovePosition is required for proper physics simulation. If you set this to true, you can
@@ -67,7 +67,7 @@ public class OVRGrabber : MonoBehaviour
     protected Quaternion m_anchorOffsetRotation;
     protected Vector3 m_anchorOffsetPosition;
     protected float m_prevFlex;
-	protected OVRGrabbable m_grabbedObj = null;
+	public OVRGrabbable m_grabbedObj = null;
     protected Vector3 m_grabbedObjectPosOff;
     protected Quaternion m_grabbedObjectRotOff;
 	protected Dictionary<OVRGrabbable, int> m_grabCandidates = new Dictionary<OVRGrabbable, int>();
@@ -319,24 +319,28 @@ public class OVRGrabber : MonoBehaviour
 
     protected virtual void MoveGrabbedObject(Vector3 pos, Quaternion rot, bool forceTeleport = false)
     {
-        if (m_grabbedObj == null)
-        {
-            return;
-        }
 
-        Rigidbody grabbedRigidbody = m_grabbedObj.grabbedRigidbody;
-        Vector3 grabbablePosition = pos + rot * m_grabbedObjectPosOff;
-        Quaternion grabbableRotation = rot * m_grabbedObjectRotOff;
+        if (ismovable)
+        {
+            if (m_grabbedObj == null)
+            {
+                return;
+            }
 
-        if (forceTeleport)
-        {
-            grabbedRigidbody.transform.position = grabbablePosition;
-            grabbedRigidbody.transform.rotation = grabbableRotation;
-        }
-        else
-        {
-            grabbedRigidbody.MovePosition(grabbablePosition);
-            grabbedRigidbody.MoveRotation(grabbableRotation);
+            Rigidbody grabbedRigidbody = m_grabbedObj.grabbedRigidbody;
+            Vector3 grabbablePosition = pos + rot * m_grabbedObjectPosOff;
+            Quaternion grabbableRotation = rot * m_grabbedObjectRotOff;
+
+            if (forceTeleport)
+            {
+                grabbedRigidbody.transform.position = grabbablePosition;
+                grabbedRigidbody.transform.rotation = grabbableRotation;
+            }
+            else
+            {
+                grabbedRigidbody.MovePosition(grabbablePosition);
+                grabbedRigidbody.MoveRotation(grabbableRotation);
+            }
         }
     }
 

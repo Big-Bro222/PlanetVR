@@ -43,6 +43,8 @@ public class WristMenuController : MonoBehaviour
             transform.position = _menuBone.Transform.position;
             transform.rotation = _menuBone.Transform.rotation;
         }
+
+        
     }
 
         //foreach(OVRBone bone in skeleton.Bones) {

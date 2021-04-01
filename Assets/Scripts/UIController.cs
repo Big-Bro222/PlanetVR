@@ -16,7 +16,9 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject shapeDetailMenu;
     [SerializeField] GameObject colorDetailMenu;
 
-    [SerializeField] GameObject sheild;
+    public GameObject ReviewPoint;
+    public GameObject sheild;
+
 
     public GameObject currentFocusPlanet;
     public GameObject OrbitPoint;

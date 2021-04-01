@@ -8,11 +8,16 @@ public class PrefabCreator : MonoBehaviour
     // Start is called before the first frame update
     GameObject newPrefab;
     bool grabble;
-    Sequence s;
+    Sequence s1;
+    Sequence s2;
+    GameObject shield;
+
     void Start()
     {
         grabble = true;
-        s = DOTween.Sequence();
+        s1 = DOTween.Sequence();
+        s2 = DOTween.Sequence();
+        shield = UIController.Instance.sheild;
 
     }
 
@@ -33,7 +38,9 @@ public class PrefabCreator : MonoBehaviour
             newPrefab.GetComponent<OVRGrabbable>().enabled = false;
             transform.localScale *= 1.5f;
             UIController.Instance.EnterUIState(UIController.UIstate.Selecting);
-            UIController.Instance.currentFocusPlanet = gameObject;            
+            UIController.Instance.currentFocusPlanet = gameObject;
+            VRDebug.Instance.Log("GrabBeginComplete");
+
         }
 
 
@@ -47,15 +54,13 @@ public class PrefabCreator : MonoBehaviour
             newPrefab.GetComponent<OVRGrabbable>().enabled = true;
             grabble = false;
             //s.Append(UIController.Instance.currentFocusPlanet.transform.DORotate())
-            s.PrependInterval(4);
-            s.Append(UIController.Instance.currentFocusPlanet.transform.DOMove(UIController.Instance.OrbitPoint.transform.position, 3f).SetEase(Ease.InOutCubic));
-            s.Join(UIController.Instance.currentFocusPlanet.transform.DOScale(Vector3.one,3f).SetEase(Ease.InOutCubic));
-            VRDebug.Instance.Log("TweenEnd");
-            s.OnComplete(() => {
-                UIController.Instance.EnterUIState(UIController.UIstate.General);
-                gameObject.GetComponent<CubeDebugger>().enabled = true;
-            });
-            
+            s2.PrependInterval(4);
+            s2.Append(transform.DOMove(UIController.Instance.OrbitPoint.transform.position, 3f).SetEase(Ease.InOutCubic));
+            s2.Join(transform.DOScale(Vector3.one, 3f).SetEase(Ease.InOutCubic));
+            UIController.Instance.EnterUIState(UIController.UIstate.General);
+            gameObject.GetComponent<CubeDebugger>().enabled = true;
+            grabble = false;
+            VRDebug.Instance.Log("GrabEndComplete");
 
         }
 
