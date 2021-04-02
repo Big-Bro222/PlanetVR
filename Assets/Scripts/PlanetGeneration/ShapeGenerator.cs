@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShapeGenerator:MonoBehaviour {
 
     [SerializeField]public ShapeSettings settings;
-    [HideInInspector]public NoiseLayer[] noiseLayers;
+    public NoiseLayer[] noiseLayers;
 
 
 

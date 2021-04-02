@@ -34,23 +34,21 @@ public class CubeDebugger : MonoBehaviour
 
     public virtual void OnButtonProximity()
     {
-        VRDebug.Instance.Log("OnButtonProximity");
         Onproximity.Invoke();
     }
 
     public virtual void OnButtonContact()
     {
-        VRDebug.Instance.Log("OnButtonContact");
         OnContact.Invoke();
     }
 
     public virtual void OnButtonAction()
     {
-        VRDebug.Instance.Log("OnButtonAction");
         UIController.Instance.EnterUIState(UIController.UIstate.ShapeSettings);
         s1.Append(transform.DOMove(UIController.Instance.ReviewPoint.transform.position,3f).SetEase(Ease.InOutCubic));
         s1.Join(transform.DOScale(1.5f, 3f));
         this.enabled = false;
+        UIController.Instance.currentFocusPlanet = gameObject;
         OnAction.Invoke();
     }
 

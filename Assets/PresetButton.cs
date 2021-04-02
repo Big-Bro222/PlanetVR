@@ -10,6 +10,9 @@ public class PresetButton : CubeDebugger
     void Start()
     {
         buttonViewController.onExit += OnButtonExit;
+        GetComponent<ButtonListener>().proximityTrigger += OnButtonProximity;
+        GetComponent<ButtonListener>().contactTrigger += OnButtonContact;
+        GetComponent<ButtonListener>().actionTrigger += OnButtonAction;
     }
 
     // Update is called once per frame
@@ -20,7 +23,7 @@ public class PresetButton : CubeDebugger
 
     public override void OnButtonAction()
     {
-        Onproximity.Invoke();
+        OnAction.Invoke();
     }
 
     public override void OnButtonContact()
@@ -29,7 +32,7 @@ public class PresetButton : CubeDebugger
     }
     public override void OnButtonProximity()
     {
-        OnAction.Invoke();
+        Onproximity.Invoke();
     }
 
     public override void OnButtonExit()

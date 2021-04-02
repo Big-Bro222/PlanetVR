@@ -11,7 +11,7 @@ public class Planet : MonoBehaviour
     public enum FaceRenderMask { All, Top, Bottom, Left, Right, Front, Back };
 
     public enum TerrainType { Land,Moutain};
-    public enum ParameterType { Strength,Roughness, Centre, Minvalue, Weight} 
+    public enum ParameterType { Strength,Roughness, Centre, Minvalue, Weight, Persistence } 
 
 
     public FaceRenderMask faceRenderMask;
@@ -39,10 +39,8 @@ public class Planet : MonoBehaviour
 
         elevationMinMax = new MinMax();
         sphereCollider = GetComponent<SphereCollider>();
-        PresetColor();
-        PresetShape();
 
-        
+
         
        
         if (meshFilters == null || meshFilters.Length == 0)
@@ -50,14 +48,15 @@ public class Planet : MonoBehaviour
             meshFilters = new MeshFilter[6];
         }
         terrainFaces = new TerrainFace[6];
+    }
 
-
-
+    public void Start()
+    {
+        PresetColor();
+        PresetShape();
         CalculateVectors();
         GenerateMesh();
         GenerateColours();
-        
-
     }
 
     private void PresetShape()
@@ -146,7 +145,7 @@ public class Planet : MonoBehaviour
         CalculateVectors();
         GenerateColours();
     }
-
+    //update shapesettings
     public void OnShapeSettingsUpdated(TerrainType terrainType, ParameterType parameterType, float parameter)
     {
         int layerIndex = (int)terrainType;
@@ -154,6 +153,9 @@ public class Planet : MonoBehaviour
         {
             case ParameterType.Strength:
                 noiseLayers[layerIndex].strength=parameter;
+                break;
+            case ParameterType.Persistence:
+                noiseLayers[layerIndex].persistence = parameter;
                 break;
             case ParameterType.Roughness:
                 noiseLayers[layerIndex].roughness = parameter;
@@ -171,21 +173,23 @@ public class Planet : MonoBehaviour
         CalculateVectors();
         GenerateMesh();
     }
-
+    //update resolution
     public void OnShapeSettingsUpdated(int resolution)
     {
+        VRDebug.Instance.Log("OnsliderValueChange2RE");
         this.resolution = resolution;
         CalculateVectors();
         GenerateMesh();
     }
-
+    //update radius
     public void OnShapeSettingsUpdated(float radius)
     {
         planetRadius = radius;
+        VRDebug.Instance.Log("OnsliderValueChange2RA");
         CalculateVectors();
         GenerateMesh();
     }
-
+    //update center position
     public void OnShapeSettingsUpdated(TerrainType terrainType, Vector3 centre)
     {
         if (terrainType == TerrainType.Land)
@@ -202,6 +206,41 @@ public class Planet : MonoBehaviour
         }
         CalculateVectors();
         GenerateMesh();
+    }
+
+
+    public int GetShpaeSettingintPara()
+    {
+        VRDebug.Instance.Log("GetResolution");
+
+        return resolution;
+    }
+    public float GetShapeSettingfloatPara()
+    {
+        VRDebug.Instance.Log("GetRadius");
+
+        return planetRadius;
+    }
+    public float GetShapeSettingPara(TerrainType terrainType, ParameterType parameterType)
+    {
+
+        int layerIndex = (int)terrainType;
+        switch (parameterType)
+        {
+            case ParameterType.Strength:
+                return noiseLayers[layerIndex].strength;
+            case ParameterType.Persistence:
+                return noiseLayers[layerIndex].persistence;
+            case ParameterType.Roughness:
+                return noiseLayers[layerIndex].roughness;
+            case ParameterType.Minvalue:
+                return noiseLayers[layerIndex].minValue;
+            case ParameterType.Weight:
+                return noiseLayers[layerIndex].weightMultiplier;
+            default:
+                Debug.LogError("Undefined parameter");
+                return 0;
+        }
     }
 
     public void OnColourSettingsUpdated()

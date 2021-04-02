@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using OculusSampleFramework;
 using TMPro;
+using UnityEngine.Events;
+using System;
 
 public class VRSlider : MonoBehaviour
 {
@@ -16,11 +18,13 @@ public class VRSlider : MonoBehaviour
     [SerializeField] TextMeshPro textMesh;
     public GameObject fingerReference;
     public bool isActivate;
-
+    public UnityAction<float> onsliderChange; 
     private float sliderLength;
+    private float _sliderValue;
     void Start()
     {
         SetValue(sliderValue);
+        _sliderValue = sliderValue;
         sliderLength = (sliderRightTip.transform.position - sliderLeftTip.transform.position).magnitude;
         GetComponent<ButtonListener>().proximityTrigger += OnButtonProximity;
         GetComponent<ButtonListener>().contactTrigger += OnButtonContact;
@@ -30,8 +34,13 @@ public class VRSlider : MonoBehaviour
 
     public void SetValue(float value)
     {
+        sliderValue = value;
         textMesh.text = value.ToString();
         float distanceproperty = value / maxValue;
+        if (distanceproperty > 1)
+        {
+            distanceproperty = 1;
+        }
         sliderHandler.transform.position = sliderLeftTip.transform.position +(sliderRightTip.transform.position - sliderLeftTip.transform.position) * distanceproperty;
 
     }
@@ -49,6 +58,7 @@ public class VRSlider : MonoBehaviour
             {
                 float length = projectOff.magnitude;
                 float Value = length / sliderLength * maxValue;
+                Value = (float)Math.Round((double)Value, 2);
                 if (Value > maxValue)
                 {
                     Value = maxValue;
@@ -62,20 +72,27 @@ public class VRSlider : MonoBehaviour
         }
         }
 
+
+    }
+
+    private void LateUpdate()
+    {
+        if (_sliderValue != sliderValue)
+        {
+            onsliderChange(sliderValue);
+            _sliderValue = sliderValue;
+        }
     }
 
     public void OnButtonProximity()
     {
-        VRDebug.Instance.Log("OnButtonProximity");
     }
 
     public void OnButtonContact()
     {
-        VRDebug.Instance.Log("OnButtonContact");
     }
 
     public void OnButtonAction()
     {
-        VRDebug.Instance.Log("OnButtonAction");
     }
 }

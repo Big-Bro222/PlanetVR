@@ -19,14 +19,15 @@ public class ButtonViewController : MonoBehaviour
         
     }
 
-    public void Onproximity()
+    public void OnContact()
     {
         meshRenderer.enabled = true;
     }
 
-    public void OnExit()
+    public void OnProximity()
     {
         meshRenderer.enabled = false;
+
     }
 
     public void OnTriggerExit(Collider other)

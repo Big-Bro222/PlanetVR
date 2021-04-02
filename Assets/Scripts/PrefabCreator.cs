@@ -31,7 +31,6 @@ public class PrefabCreator : MonoBehaviour
     {
         if (UIController.Instance.currentState==UIController.UIstate.General&& grabble)
         {
-            VRDebug.Instance.Log("Begin");
             newPrefab = Instantiate(gameObject, transform.parent);
             newPrefab.transform.position = transform.position;
             newPrefab.transform.localScale = transform.localScale;
@@ -39,8 +38,6 @@ public class PrefabCreator : MonoBehaviour
             transform.localScale *= 1.5f;
             UIController.Instance.EnterUIState(UIController.UIstate.Selecting);
             UIController.Instance.currentFocusPlanet = gameObject;
-            VRDebug.Instance.Log("GrabBeginComplete");
-
         }
 
 
@@ -50,7 +47,6 @@ public class PrefabCreator : MonoBehaviour
     {
         if (grabble)
         {
-            VRDebug.Instance.Log("End");
             newPrefab.GetComponent<OVRGrabbable>().enabled = true;
             grabble = false;
             //s.Append(UIController.Instance.currentFocusPlanet.transform.DORotate())
@@ -60,7 +56,6 @@ public class PrefabCreator : MonoBehaviour
             UIController.Instance.EnterUIState(UIController.UIstate.General);
             gameObject.GetComponent<CubeDebugger>().enabled = true;
             grabble = false;
-            VRDebug.Instance.Log("GrabEndComplete");
 
         }
 
