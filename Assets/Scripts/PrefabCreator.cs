@@ -7,17 +7,20 @@ public class PrefabCreator : MonoBehaviour
 {
     // Start is called before the first frame update
     GameObject newPrefab;
-    bool grabble;
+    public bool grabble;
     Sequence s1;
     Sequence s2;
     GameObject shield;
+    [SerializeField] GameObject PlanetPrefab;
 
+    public bool instantiatePhase;
     void Start()
     {
         grabble = true;
         s1 = DOTween.Sequence();
         s2 = DOTween.Sequence();
         shield = UIController.Instance.sheild;
+        //instantiatePhase = true;
 
     }
 
@@ -29,33 +32,68 @@ public class PrefabCreator : MonoBehaviour
 
     public void OnGrabBegin()
     {
-        if (UIController.Instance.currentState==UIController.UIstate.General&& grabble)
+        if (grabble)
         {
-            newPrefab = Instantiate(gameObject, transform.parent);
-            newPrefab.transform.position = transform.position;
-            newPrefab.transform.localScale = transform.localScale;
-            newPrefab.GetComponent<OVRGrabbable>().enabled = false;
-            transform.localScale *= 1.5f;
-            UIController.Instance.EnterUIState(UIController.UIstate.Selecting);
-            UIController.Instance.currentFocusPlanet = gameObject;
+            if (UIController.Instance.currentState == UIController.UIstate.General)
+            {
+                newPrefab = Instantiate(PlanetPrefab,transform.parent);
+                newPrefab.transform.position = transform.position;
+                newPrefab.transform.localScale = transform.localScale;
+                newPrefab.GetComponent<OVRGrabbable>().enabled = false;
+                newPrefab.GetComponent<PrefabCreator>().PlanetPrefab = PlanetPrefab;
+
+                transform.parent = UIController.Instance.OrbitFolder.transform;
+                transform.localScale *= 1.5f;
+                UIController.Instance.EnterUIState(UIController.UIstate.Selecting);
+                UIController.Instance.currentFocusPlanet = gameObject;
+            }
         }
+
 
 
     }
 
+    //private void OnMouseDown()
+    //{
+    //    OnGrabBegin();
+    //    Invoke("OnGrabEnd", 4f);
+    //}
+
+    //private void OnMouseUp()
+    //{
+    //    if (instantiatePhase)
+    //    {
+    //        OnGrabEnd();
+    //        instantiatePhase = false;
+    //    }
+    //    else
+    //    {
+
+    //    }
+    //}
+
     public void OnGrabEnd()
     {
+
         if (grabble)
         {
-            newPrefab.GetComponent<OVRGrabbable>().enabled = true;
-            grabble = false;
-            //s.Append(UIController.Instance.currentFocusPlanet.transform.DORotate())
-            s2.PrependInterval(4);
-            s2.Append(transform.DOMove(UIController.Instance.OrbitPoint.transform.position, 3f).SetEase(Ease.InOutCubic));
-            s2.Join(transform.DOScale(Vector3.one, 3f).SetEase(Ease.InOutCubic));
-            UIController.Instance.EnterUIState(UIController.UIstate.General);
-            gameObject.GetComponent<CubeDebugger>().enabled = true;
-            grabble = false;
+                newPrefab.GetComponent<OVRGrabbable>().enabled = true;
+                
+
+
+                DOTween.Sequence()
+                    .Append(transform.DOMove(UIController.Instance.ReviewPoint.transform.position, 2f).SetEase(Ease.InOutCubic))
+                    .Append(transform.DOMove(UIController.Instance.OrbitPoint.transform.position, 3f).SetEase(Ease.InOutCubic))
+                    .Join(transform.DOScale(1.0f, 3f).SetEase(Ease.InOutCubic))
+                    .OnComplete(()=> {
+                        UIController.Instance.EnterUIState(UIController.UIstate.General);
+                        UIController.Instance.currentFocusPlanet = null;
+                        gameObject.GetComponent<CubeDebugger>().enabled = true;
+                        grabble = false;
+                    });
+
+
+
 
         }
 

@@ -9,7 +9,6 @@ using DG.Tweening;
 public class CubeDebugger : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Sequence s1;
     public UnityEvent Onproximity;
     public UnityEvent OnContact;
     public UnityEvent OnAction;
@@ -20,40 +19,42 @@ public class CubeDebugger : MonoBehaviour
         GetComponent<ButtonListener>().proximityTrigger += OnButtonProximity;
         GetComponent<ButtonListener>().contactTrigger += OnButtonContact;
         GetComponent<ButtonListener>().actionTrigger += OnButtonAction;
-        s1 = DOTween.Sequence();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    OnButtonAction();
+        //}
     }
 
    
 
     public virtual void OnButtonProximity()
     {
-        Onproximity.Invoke();
+
     }
 
     public virtual void OnButtonContact()
     {
-        OnContact.Invoke();
     }
 
     public virtual void OnButtonAction()
     {
-        UIController.Instance.EnterUIState(UIController.UIstate.ShapeSettings);
-        s1.Append(transform.DOMove(UIController.Instance.ReviewPoint.transform.position,3f).SetEase(Ease.InOutCubic));
-        s1.Join(transform.DOScale(1.5f, 3f));
-        this.enabled = false;
         UIController.Instance.currentFocusPlanet = gameObject;
-        OnAction.Invoke();
+        UIController.Instance.EnterUIState(UIController.UIstate.ShapeSettings);
+        DOTween.Sequence()
+            .Append(transform.DOMove(UIController.Instance.ReviewPoint.transform.position,3f).SetEase(Ease.InOutCubic))
+            .Join(transform.DOScale(1.5f, 3f));
+        this.enabled = false;
     }
 
     public virtual void OnButtonExit()
     {
 
     }
+
 }

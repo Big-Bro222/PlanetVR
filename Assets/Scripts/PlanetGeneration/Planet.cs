@@ -24,8 +24,13 @@ public class Planet : MonoBehaviour
     [SerializeField] float planetRadius;
     [SerializeField] PlanetNoiseLayer[] noiseLayers;
     [SerializeField] Gradient gradient;
-    [SerializeField] public ShapeGenerator shapeGenerator;
-    [SerializeField] public ColourGenerator colourGenerator;
+    //[SerializeField] public ShapeGenerator shapeGenerator;
+    //[SerializeField] public ColourGenerator colourGenerator;
+
+
+    [SerializeField] public ShapeSettings shapeSettings;
+    [SerializeField] public ColourSettings colorSettings;
+
 
     SphereCollider sphereCollider;
     Vector3[] directions = { Vector3.up, Vector3.down, Vector3.left, Vector3.right, Vector3.forward, Vector3.back };
@@ -40,18 +45,12 @@ public class Planet : MonoBehaviour
         elevationMinMax = new MinMax();
         sphereCollider = GetComponent<SphereCollider>();
 
-
-        
-       
         if (meshFilters == null || meshFilters.Length == 0)
         {
             meshFilters = new MeshFilter[6];
         }
         terrainFaces = new TerrainFace[6];
-    }
 
-    public void Start()
-    {
         PresetColor();
         PresetShape();
         CalculateVectors();
@@ -59,28 +58,33 @@ public class Planet : MonoBehaviour
         GenerateColours();
     }
 
+    public void Start()
+    {
+
+    }
+
     private void PresetShape()
     {
         //Synchronize the shape information of the globel at the beginning of the project.
-        noiseLayers = new PlanetNoiseLayer[shapeGenerator.noiseLayers.Length];
+        noiseLayers = new PlanetNoiseLayer[shapeSettings.noiseLayers.Length];
         for (int i = 0; i < noiseLayers.Length; i++)
         {
             noiseLayers[i] = new PlanetNoiseLayer();
             noiseLayers[i].enabled = true;
-            noiseLayers[i].useFirstLayerAsMask = shapeGenerator.noiseLayers[i].useFirstLayerAsMask;
-            noiseLayers[i].noiseType = shapeGenerator.noiseLayers[i].noiseSettings.noiseType;
-            noiseLayers[i].strength = shapeGenerator.noiseLayers[i].noiseSettings.strength;
-            noiseLayers[i].numLayers = shapeGenerator.noiseLayers[i].noiseSettings.numLayers;
-            noiseLayers[i].baseRoughness = shapeGenerator.noiseLayers[i].noiseSettings.baseRoughness;
-            noiseLayers[i].roughness = shapeGenerator.noiseLayers[i].noiseSettings.roughness;
-            noiseLayers[i].persistence = shapeGenerator.noiseLayers[i].noiseSettings.persistence;
-            noiseLayers[i].centre = shapeGenerator.noiseLayers[i].noiseSettings.centre;
-            noiseLayers[i].minValue = shapeGenerator.noiseLayers[i].noiseSettings.minValue;
+            noiseLayers[i].useFirstLayerAsMask = shapeSettings.noiseLayers[i].useFirstLayerAsMask;
+            noiseLayers[i].noiseType = shapeSettings.noiseLayers[i].noiseSettings.noiseType;
+            noiseLayers[i].strength = shapeSettings.noiseLayers[i].noiseSettings.strength;
+            noiseLayers[i].numLayers = shapeSettings.noiseLayers[i].noiseSettings.numLayers;
+            noiseLayers[i].baseRoughness = shapeSettings.noiseLayers[i].noiseSettings.baseRoughness;
+            noiseLayers[i].roughness = shapeSettings.noiseLayers[i].noiseSettings.roughness;
+            noiseLayers[i].persistence = shapeSettings.noiseLayers[i].noiseSettings.persistence;
+            noiseLayers[i].centre = shapeSettings.noiseLayers[i].noiseSettings.centre;
+            noiseLayers[i].minValue = shapeSettings.noiseLayers[i].noiseSettings.minValue;
 
             noiseLayers[i].weightMultiplier = .8f;
         }
 
-        planetRadius = shapeGenerator.settings.planetRadius;
+        planetRadius = shapeSettings.planetRadius;
 
         sphereCollider.radius = planetRadius;
 
@@ -91,8 +95,8 @@ public class Planet : MonoBehaviour
     {
 
         //Synchronize the color information of the globel at the beginning of the project.
-        gradient = colourGenerator.settings.gradient;
-        planetMaterial = colourGenerator.settings.planetMaterial;
+        gradient = colorSettings.gradient;
+        planetMaterial = colorSettings.planetMaterial;
         texture = new Texture2D(textureResolution, 1);
     }
 
@@ -128,19 +132,20 @@ public class Planet : MonoBehaviour
         GenerateMesh();
     }
 
-    public void OnAssignShapeSettingPrefab(ShapeGenerator shapeGenerator)
+    public void OnAssignShapeSettingPrefab(ShapeSettings shapeSettings)
     {
         //if assign a brand new shape preset generator;
-        this.shapeGenerator = shapeGenerator;
+        this.shapeSettings = shapeSettings;
         PresetShape();
         CalculateVectors();
         GenerateMesh();
     }
 
-    public void OnAssignColorSettingPrefab(ColourGenerator colourGenerator)
+    public void OnAssignColorSettingPrefab(ColourSettings colourSettings)
     {
         //if assign a brand new color preset generator;
-        this.colourGenerator = colourGenerator;
+        //this.colourGenerator = colourGenerator;
+        this.colorSettings = colourSettings;
         PresetColor();
         CalculateVectors();
         GenerateColours();
@@ -276,7 +281,7 @@ public class Planet : MonoBehaviour
             face.ConstructMesh();
         }
         UpdateElevation(elevationMinMax);
-        planetRadius = shapeGenerator.settings.planetRadius;
+        planetRadius = shapeSettings.planetRadius;
         sphereCollider.radius = planetRadius;
 
 

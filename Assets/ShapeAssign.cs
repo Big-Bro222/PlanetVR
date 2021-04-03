@@ -9,8 +9,8 @@ public class ShapeAssign : MonoBehaviour
     public void AssignShapeSettings()
     {
         Planet currentPlanet = UIController.Instance.currentFocusPlanet.GetComponent<Planet>();
-        currentPlanet.shapeGenerator = shapeGenerator;
-        currentPlanet.OnAssignShapeSettingPrefab(shapeGenerator);
+        currentPlanet.shapeSettings = shapeGenerator.settings;
+        currentPlanet.OnAssignShapeSettingPrefab(shapeGenerator.settings);
         VRDebug.Instance.Log("Assign");
     }
 

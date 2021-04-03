@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+
 
 public class UIController : MonoBehaviour
 {
@@ -37,10 +39,13 @@ public class UIController : MonoBehaviour
 
     public GameObject currentFocusPlanet;
     public GameObject OrbitPoint;
+    public GameObject OrbitFolder;
     
     public UIstate currentState;
 
     public static UIController Instance { get; private set; }
+
+    Sequence s1;
     private void Awake()
     {
         if (Instance == null)
@@ -53,6 +58,7 @@ public class UIController : MonoBehaviour
             Destroy(gameObject);
         }
         currentState = UIstate.General;
+        s1 = DOTween.Sequence();
 
     }
 
@@ -86,12 +92,15 @@ public class UIController : MonoBehaviour
                 presetShapeSettings.SetActive(true);
                 shapeDetailMenu.SetActive(true);
                 SubscribeShapeSettings();
+                GestureDetector.Instance.onGestureRecognized+= Togeneral;
                 break;
             case UIstate.ColorSettings:
                 settingsInstruction.SetActive(true);
                 presetColorSettings.SetActive(true);
                 colorDetailMenu.SetActive(true);
                 SubscribeColorSettings();
+                GestureDetector.Instance.onGestureRecognized += Togeneral;
+
                 break;
             default:
                 break;
@@ -100,7 +109,7 @@ public class UIController : MonoBehaviour
     }
 
 
-    private void ExitUIState(UIstate oldUIState)
+    public void ExitUIState(UIstate oldUIState)
     {
         //ToDo: reset old state;
         switch (oldUIState)
@@ -122,12 +131,16 @@ public class UIController : MonoBehaviour
                 presetShapeSettings.SetActive(false);
                 shapeDetailMenu.SetActive(false);
                 UnsubscribeShapeSettings();
+                GestureDetector.Instance.onGestureRecognized -= Togeneral;
+
                 break;
             case UIstate.ColorSettings:
                 settingsInstruction.SetActive(false);
                 presetColorSettings.SetActive(false);
                 colorDetailMenu.SetActive(false);
                 UnsubscribeColorSettings();
+                GestureDetector.Instance.onGestureRecognized -= Togeneral;
+
                 break;
             default:
                 break;
@@ -140,15 +153,15 @@ public class UIController : MonoBehaviour
         Resolution.onsliderChange += (value)=>currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated((int)value);
         Radius.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(value);
 
-        //land_Strength.onsliderChange += (value)=> currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land,Planet.ParameterType.Strength,value);
-        //land_Roughness.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Roughness, value);
-        //land_Persistence.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Persistence, value);
-        //land_MinValue.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Minvalue, value);
-        //moutain_Strength.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Strength, value);
-        //moutain_Roughness.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Roughness, value);
-        //moutain_Persistence.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Persistence, value);
-        //moutain_MinValue.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Minvalue, value);
-        //moutain_Weight.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Weight, value);
+        land_Strength.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Strength, value);
+        land_Roughness.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Roughness, value);
+        land_Persistence.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Persistence, value);
+        land_MinValue.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Minvalue, value);
+        moutain_Strength.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Strength, value);
+        moutain_Roughness.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Roughness, value);
+        moutain_Persistence.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Persistence, value);
+        moutain_MinValue.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Minvalue, value);
+        moutain_Weight.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Weight, value);
         setupShapeSettingstoSlider(true);
     }
 
@@ -157,16 +170,16 @@ public class UIController : MonoBehaviour
         Resolution.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated((int)value);
         Radius.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(value);
 
-        //land_Strength.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Strength, value);
-        //land_Roughness.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Roughness, value);
-        //land_Persistence.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Persistence, value);
-        //land_MinValue.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Minvalue, value);
-        //moutain_Strength.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Strength, value);
-        //moutain_Roughness.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Roughness, value);
-        //moutain_Persistence.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Persistence, value);
-        //moutain_MinValue.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Minvalue, value);
-        //moutain_Weight.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Weight, value);
-        //setupShapeSettingstoSlider(false);
+        land_Strength.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Strength, value);
+        land_Roughness.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Roughness, value);
+        land_Persistence.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Persistence, value);
+        land_MinValue.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Land, Planet.ParameterType.Minvalue, value);
+        moutain_Strength.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Strength, value);
+        moutain_Roughness.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Roughness, value);
+        moutain_Persistence.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Persistence, value);
+        moutain_MinValue.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Minvalue, value);
+        moutain_Weight.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Weight, value);
+        setupShapeSettingstoSlider(false);
 
     }
 
@@ -174,6 +187,7 @@ public class UIController : MonoBehaviour
     {
         if (isEnter)
         {
+            Debug.Log(currentFocusPlanet.name);
             Resolution.SetValue(currentFocusPlanet.GetComponent<Planet>().GetShpaeSettingintPara());
             Radius.SetValue(currentFocusPlanet.GetComponent<Planet>().GetShapeSettingfloatPara());
             land_Strength.SetValue(currentFocusPlanet.GetComponent<Planet>().GetShapeSettingPara(Planet.TerrainType.Land, Planet.ParameterType.Strength));
@@ -218,6 +232,33 @@ public class UIController : MonoBehaviour
 
     public void UpdateColorSettingsUI()
     {
+
+    }
+
+
+    public void switchtosettings(bool isToShapeSettings)
+    {
+        if (isToShapeSettings)
+        {
+            EnterUIState(UIstate.ShapeSettings);
+        }
+        else
+        {
+            EnterUIState(UIstate.ColorSettings);
+        }
+    }
+
+    public void Togeneral()
+    {
+        EnterUIState(UIstate.General);
+        DOTween.Sequence()
+            .Append(currentFocusPlanet.transform.DOMove(UIController.Instance.OrbitPoint.transform.position, 2f).SetEase(Ease.InOutCubic))
+            .Join(currentFocusPlanet.transform.DOScale(Vector3.one*1.5f, 3f).SetEase(Ease.InOutCubic))
+            .OnComplete(() => {
+                currentFocusPlanet.GetComponent<CubeDebugger>().enabled = true;
+                currentFocusPlanet = null;
+            });
+
 
     }
 

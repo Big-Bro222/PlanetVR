@@ -5,17 +5,10 @@ using UnityEngine;
 public class ShapeGenerator:MonoBehaviour {
 
     [SerializeField]public ShapeSettings settings;
-    public NoiseLayer[] noiseLayers;
 
 
 
     //public MinMax elevationMinMax;
-
-    private void Awake()
-    {
-
-        noiseLayers=settings.noiseLayers;
-    }
 
     //public void UpdateSettings(ShapeSettings settings)
     //{

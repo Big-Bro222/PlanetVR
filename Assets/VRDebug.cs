@@ -26,4 +26,16 @@ public class VRDebug : MonoBehaviour
         GameObject textobj=Instantiate(textPrefab3D, transform);
         textobj.GetComponent<TextMeshProUGUI>().SetText(logtext) ;
     }
+
+    public void Clear()
+    {
+        if (transform.childCount > 0)
+        {
+            foreach (Transform childtransform in transform)
+            {
+                Destroy(childtransform.gameObject);
+            }
+        }
+
+    }
 }
