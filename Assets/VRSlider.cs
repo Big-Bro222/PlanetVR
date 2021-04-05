@@ -21,11 +21,15 @@ public class VRSlider : MonoBehaviour
     public UnityAction<float> onsliderChange; 
     private float sliderLength;
     private float _sliderValue;
+    private float scale;
+    private const int scaleNum=10;
+
     void Start()
     {
+        scale = maxValue / scaleNum;
         SetValue(sliderValue);
         _sliderValue = sliderValue;
-        sliderLength = (sliderRightTip.transform.position - sliderLeftTip.transform.position).magnitude;
+        sliderLength = Vector3.Distance(sliderRightTip.transform.position,sliderLeftTip.transform.position);
         GetComponent<ButtonListener>().proximityTrigger += OnButtonProximity;
         GetComponent<ButtonListener>().contactTrigger += OnButtonContact;
         GetComponent<ButtonListener>().actionTrigger += OnButtonAction;
@@ -34,42 +38,44 @@ public class VRSlider : MonoBehaviour
 
     public void SetValue(float value)
     {
-        sliderValue = value;
-        textMesh.text = value.ToString();
-        float distanceproperty = value / maxValue;
-        if (distanceproperty > 1)
+        if (value > maxValue)
         {
-            distanceproperty = 1;
+            value = maxValue;
         }
-        sliderHandler.transform.position = sliderLeftTip.transform.position +(sliderRightTip.transform.position - sliderLeftTip.transform.position) * distanceproperty;
+        int scaleProperty = Mathf.FloorToInt(value / scale);
+        sliderValue = scale * scaleProperty;
+        textMesh.text = (scale*scaleProperty).ToString();
+        sliderHandler.transform.position = sliderLeftTip.transform.position +(sliderRightTip.transform.position - sliderLeftTip.transform.position) * scaleProperty/ scaleNum;
 
     }
+
+
     // Update is called once per frame
     void Update()
     {
         if (fingerReference)
         {
-                    if (isActivate)
-        {
-            Vector3 fingerLeftTipOff = fingerReference.transform.position - sliderLeftTip.transform.position;
-            Vector3 projectOff = Vector3.Project(fingerLeftTipOff, transform.right);
-            float direction=Vector3.Dot(projectOff, transform.right);
-            if (direction > 0)
+            if (isActivate)
             {
-                float length = projectOff.magnitude;
-                float Value = length / sliderLength * maxValue;
-                Value = (float)Math.Round((double)Value, 2);
-                if (Value > maxValue)
+                Vector3 fingerLeftTipOff = fingerReference.transform.position - sliderLeftTip.transform.position;
+                Vector3 projectOff = Vector3.Project(fingerLeftTipOff, transform.right);
+                float direction=Vector3.Dot(projectOff, transform.right);
+                if (direction > 0)
                 {
-                    Value = maxValue;
+                    float length = projectOff.magnitude;
+                    float Value = length / sliderLength * maxValue;
+                    //Value = (float)Math.Round((double)Value, 2);
+                    if (Value > maxValue)
+                    {
+                        Value = maxValue;
+                    }
+                    SetValue(Value);
                 }
-                SetValue(Value);
+                else
+                {
+                    SetValue(0);
+                };
             }
-            else
-            {
-                SetValue(0);
-            };
-        }
         }
 
 

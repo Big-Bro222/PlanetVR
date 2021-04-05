@@ -5,13 +5,13 @@ using UnityEngine;
 public class ShapeAssign : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] ShapeGenerator shapeGenerator;
+    [SerializeField] ShapeSettings shapeSettings;
     public void AssignShapeSettings()
     {
+        VRDebug.Instance.Log("AssignShape");
         Planet currentPlanet = UIController.Instance.currentFocusPlanet.GetComponent<Planet>();
-        currentPlanet.shapeSettings = shapeGenerator.settings;
-        currentPlanet.OnAssignShapeSettingPrefab(shapeGenerator.settings);
-        VRDebug.Instance.Log("Assign");
+        currentPlanet.shapeSettings = shapeSettings;
+        currentPlanet.OnAssignShapeSettingPrefab(shapeSettings);
     }
 
 

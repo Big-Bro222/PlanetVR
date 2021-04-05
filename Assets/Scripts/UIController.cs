@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject prefabMenu;
     [SerializeField] GameObject shapeDetailMenu;
     [SerializeField] GameObject colorDetailMenu;
+    [SerializeField] GameObject ConfirmPanel;
 
     //slider settings
     [SerializeField] VRSlider Resolution;
@@ -38,16 +39,18 @@ public class UIController : MonoBehaviour
 
 
     public GameObject currentFocusPlanet;
-    public GameObject OrbitPoint;
+    public GameObject OrbitCenter;
     public GameObject OrbitFolder;
     
     public UIstate currentState;
 
     public static UIController Instance { get; private set; }
 
-    Sequence s1;
+    public bool isUISwitchable;
+
     private void Awake()
     {
+        isUISwitchable = true;
         if (Instance == null)
         {
             Instance = this;
@@ -58,7 +61,6 @@ public class UIController : MonoBehaviour
             Destroy(gameObject);
         }
         currentState = UIstate.General;
-        s1 = DOTween.Sequence();
 
     }
 
@@ -187,7 +189,6 @@ public class UIController : MonoBehaviour
     {
         if (isEnter)
         {
-            Debug.Log(currentFocusPlanet.name);
             Resolution.SetValue(currentFocusPlanet.GetComponent<Planet>().GetShpaeSettingintPara());
             Radius.SetValue(currentFocusPlanet.GetComponent<Planet>().GetShapeSettingfloatPara());
             land_Strength.SetValue(currentFocusPlanet.GetComponent<Planet>().GetShapeSettingPara(Planet.TerrainType.Land, Planet.ParameterType.Strength));
@@ -218,11 +219,11 @@ public class UIController : MonoBehaviour
 
     private void UnsubscribeColorSettings()
     {
-
+        //TODO:After implement colorPanel
     }
     private void SubscribeColorSettings()
     {
-
+        //TODO:After implement colorPanel;
     }
 
     public void UpdateShapeSettingsUI()
@@ -238,6 +239,12 @@ public class UIController : MonoBehaviour
 
     public void switchtosettings(bool isToShapeSettings)
     {
+        if (!isUISwitchable)
+        {
+            return;
+        }
+
+        isUISwitchable = false;
         if (isToShapeSettings)
         {
             EnterUIState(UIstate.ShapeSettings);
@@ -250,16 +257,30 @@ public class UIController : MonoBehaviour
 
     public void Togeneral()
     {
-        EnterUIState(UIstate.General);
-        DOTween.Sequence()
-            .Append(currentFocusPlanet.transform.DOMove(UIController.Instance.OrbitPoint.transform.position, 2f).SetEase(Ease.InOutCubic))
-            .Join(currentFocusPlanet.transform.DOScale(Vector3.one*1.5f, 3f).SetEase(Ease.InOutCubic))
-            .OnComplete(() => {
-                currentFocusPlanet.GetComponent<CubeDebugger>().enabled = true;
-                currentFocusPlanet = null;
-            });
+        if (currentState != UIstate.General)
+        {
+            PlanetMovement planetMovement = currentFocusPlanet.GetComponent<PlanetMovement>();
+            EnterUIState(UIstate.General);
+            Vector3 StartPoint = planetMovement.StartPoint;
 
-
+            DOTween.Sequence()
+                .Append(currentFocusPlanet.transform.DOMove(StartPoint, 2f).SetEase(Ease.InOutCubic))
+                .Join(currentFocusPlanet.transform.DOScale(Vector3.one * 1.5f, 3f).SetEase(Ease.InOutCubic))
+                .AppendCallback(() =>
+                {
+                    ConfirmPanel.GetComponent<AudioSource>().Play();
+                })
+                .Join(ConfirmPanel.transform.DOScale(1.0f, 2f)).SetEase(Ease.InOutElastic)
+                .AppendInterval(5)
+                .Append(ConfirmPanel.transform.DOScale(0,1f).SetEase(Ease.InSine))
+                .OnComplete(() => {
+                    ConfirmPanel.GetComponent<AudioSource>().Stop();
+                    planetMovement.Ismoveable = true;
+                    currentFocusPlanet.GetComponent<TrailRenderer>().enabled = true;
+                    currentFocusPlanet.GetComponent<CubeDebugger>().enabled = true;
+                    currentFocusPlanet = null;
+                });
+        }
     }
 
 }

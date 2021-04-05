@@ -44,7 +44,14 @@ public class CubeDebugger : MonoBehaviour
 
     public virtual void OnButtonAction()
     {
+        if (UIController.Instance.currentState != UIController.UIstate.General)
+        {
+            return;
+        }
         UIController.Instance.currentFocusPlanet = gameObject;
+        PlanetMovement planetMovement = gameObject.GetComponent<PlanetMovement>();
+        planetMovement.Ismoveable = false;
+        GetComponent<TrailRenderer>().enabled = false;
         UIController.Instance.EnterUIState(UIController.UIstate.ShapeSettings);
         DOTween.Sequence()
             .Append(transform.DOMove(UIController.Instance.ReviewPoint.transform.position,3f).SetEase(Ease.InOutCubic))

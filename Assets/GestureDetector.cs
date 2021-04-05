@@ -51,7 +51,11 @@ public class GestureDetector : MonoBehaviour
         {
             if (ROKgestureRecognize())
             {
+#if UNITY_EDITOR
+
+#else
                 onGestureRecognized();
+#endif
             }
         }
     }

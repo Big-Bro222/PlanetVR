@@ -27,7 +27,7 @@ public class ButtonViewController : MonoBehaviour
     public void OnProximity()
     {
         meshRenderer.enabled = false;
-
+        UIController.Instance.isUISwitchable = true;
     }
 
     public void OnTriggerExit(Collider other)
