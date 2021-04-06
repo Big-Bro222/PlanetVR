@@ -153,6 +153,7 @@ public class Planet : MonoBehaviour
     //update shapesettings
     public void OnShapeSettingsUpdated(TerrainType terrainType, ParameterType parameterType, float parameter)
     {
+        Debug.Log(name);
         int layerIndex = (int)terrainType;
         switch (parameterType)
         {

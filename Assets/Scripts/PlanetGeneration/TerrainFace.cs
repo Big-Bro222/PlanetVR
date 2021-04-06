@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TerrainFace {
-    ShapeGenerator shapeGenerator;
+    //ShapeGenerator shapeGenerator;
     Planet planet;
     Mesh mesh;
     int resolution;

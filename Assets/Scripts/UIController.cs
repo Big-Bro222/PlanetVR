@@ -152,6 +152,7 @@ public class UIController : MonoBehaviour
 
     private void SubscribeShapeSettings()
     {
+        Debug.Log(currentFocusPlanet.name+" subscribe");
         Resolution.onsliderChange += (value)=>currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated((int)value);
         Radius.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(value);
 

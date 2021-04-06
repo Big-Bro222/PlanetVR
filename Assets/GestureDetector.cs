@@ -78,6 +78,10 @@ public class GestureDetector : MonoBehaviour
     {
         //float currentMin = Mathf.Infinity;
         float sumDistance = 0;
+        if (LfingerBones == null)
+        {
+            return false;
+        }
         for (int i = 0; i < LfingerBones.Count; i++)
         {
             Vector3 currentData = Lskeleton.transform.InverseTransformPoint(LfingerBones[i].Transform.position);

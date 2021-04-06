@@ -43,7 +43,8 @@ public class PrefabCreator : MonoBehaviour
                 newPrefab.transform.localScale = transform.localScale;
                 newPrefab.GetComponent<OVRGrabbable>().enabled = false;
                 newPrefab.GetComponent<PrefabCreator>().PlanetPrefab = PlanetPrefab;
-
+                newPrefab.GetComponent<PlanetMovement>().Ismoveable = false;
+                newPrefab.GetComponent<SphereCollider>().enabled = false;
                 
 
 
@@ -61,8 +62,16 @@ public class PrefabCreator : MonoBehaviour
 
     private void OnMouseDown()
     {
-        OnGrabBegin();
-        Invoke("OnGrabEnd", 4f);
+        if (grabble)
+        {
+            OnGrabBegin();
+            Invoke("OnGrabEnd", 3f);
+        }
+        else
+        {
+            GetComponent<CubeDebugger>().OnButtonAction();
+        }
+
     }
 
     //private void OnMouseUp()
@@ -88,6 +97,7 @@ public class PrefabCreator : MonoBehaviour
             GeneratePlanetMovementPara();
 
                 DOTween.Sequence()
+                    .AppendCallback(()=> { transform.GetComponent<SphereCollider>().enabled = false; })
                     .Append(transform.DOMove(UIController.Instance.ReviewPoint.transform.position, 2f).SetEase(Ease.InOutCubic))
                     .Append(transform.DOMove(planetStartPoint, 3f).SetEase(Ease.InOutCubic))
                     .Join(transform.DOScale(1.0f, 3f).SetEase(Ease.InOutCubic))
@@ -98,6 +108,12 @@ public class PrefabCreator : MonoBehaviour
                         grabble = false;
                         transform.GetComponent<TrailRenderer>().enabled = true;
                         transform.GetComponent<PlanetMovement>().Ismoveable = true;
+
+                        //there is a wierd bug that mouse button simulationwont work with this line.Don't disable it.
+                        transform.GetComponent<SphereCollider>().enabled = true;
+
+                        newPrefab.GetComponent<SphereCollider>().enabled = true;
+
                     });
 
 
