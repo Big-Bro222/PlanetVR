@@ -62,7 +62,14 @@ public class Planet : MonoBehaviour
     {
 
     }
+    private void OnEnable()
+    {
+        //GenerateNewSettings();
+    }
 
+    private void Update()
+    {
+    }
     private void PresetShape()
     {
         //Synchronize the shape information of the globel at the beginning of the project.
@@ -153,7 +160,7 @@ public class Planet : MonoBehaviour
     //update shapesettings
     public void OnShapeSettingsUpdated(TerrainType terrainType, ParameterType parameterType, float parameter)
     {
-        Debug.Log(name);
+        Debug.Log("Update");
         int layerIndex = (int)terrainType;
         switch (parameterType)
         {
@@ -176,13 +183,15 @@ public class Planet : MonoBehaviour
                 Debug.LogError("Undefined parameter");
                 break;
         }
-        CalculateVectors();
-        GenerateMesh();
+
+        //Thread safety
+            CalculateVectors();
+            GenerateMesh();
+
     }
     //update resolution
     public void OnShapeSettingsUpdated(int resolution)
     {
-        VRDebug.Instance.Log("OnsliderValueChange2RE");
         this.resolution = resolution;
         CalculateVectors();
         GenerateMesh();
@@ -191,7 +200,6 @@ public class Planet : MonoBehaviour
     public void OnShapeSettingsUpdated(float radius)
     {
         planetRadius = radius;
-        VRDebug.Instance.Log("OnsliderValueChange2RA");
         CalculateVectors();
         GenerateMesh();
     }
@@ -217,13 +225,10 @@ public class Planet : MonoBehaviour
 
     public int GetShpaeSettingintPara()
     {
-        VRDebug.Instance.Log("GetResolution");
-
         return resolution;
     }
     public float GetShapeSettingfloatPara()
     {
-        VRDebug.Instance.Log("GetRadius");
 
         return planetRadius;
     }

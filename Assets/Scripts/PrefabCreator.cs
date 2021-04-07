@@ -16,8 +16,6 @@ public class PrefabCreator : MonoBehaviour
     private Vector3 axis;
     private Vector3 planetStartPoint;
     
-
-    public bool instantiatePhase;
     void Start()
     {
         grabble = true;
@@ -38,6 +36,10 @@ public class PrefabCreator : MonoBehaviour
         {
             if (UIController.Instance.currentState == UIController.UIstate.General)
             {
+                //newPrefab = Instantiate(new GameObject(name), transform.parent);
+                //newPrefab.transform.position = transform.position;
+
+
                 newPrefab = Instantiate(PlanetPrefab,transform.parent);
                 newPrefab.transform.position = transform.position;
                 newPrefab.transform.localScale = transform.localScale;
@@ -69,6 +71,7 @@ public class PrefabCreator : MonoBehaviour
         }
         else
         {
+            Debug.Log(name);
             GetComponent<CubeDebugger>().OnButtonAction();
         }
 
