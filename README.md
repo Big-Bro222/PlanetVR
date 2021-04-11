@@ -6,8 +6,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="Documentation/MR%20Vis%20Cover.png" alt="Logo" width="160" height="160">
-  <h3 align="center">VR Planet</h3>
+
+  <h1 align="center">VR Planet</h1>
 
   <p align="center">
     Planet generation in VR
@@ -51,7 +51,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[<img src="https://github.com/Big-Bro222/MRvis/blob/master/Documentation/DemoCover.png">](https://youtu.be/ccCgWqAy-XU)
+[<img src="https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Pic/Youtube.png">](https://youtu.be/ccCgWqAy-XU)
 
 
 The project is a VR application targeting on Oculus quest platform developed by Unity. The main function includes Planet generate, planet shape changing and innovative hand gesture interactions.
@@ -77,6 +77,7 @@ Build [HandUIScene](https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Scen
 #### Open UI
 [<img src="https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Pic/Ok%20(2).gif">]
 #### Confirm settings
+[<img src="https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Pic/OpenAndClose.gif">]
 
 <!-- LICENSE -->
 ## License
