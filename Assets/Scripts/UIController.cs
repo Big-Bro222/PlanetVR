@@ -18,6 +18,8 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject shapeDetailMenu;
     [SerializeField] GameObject colorDetailMenu;
     [SerializeField] GameObject ConfirmPanel;
+    [SerializeField] GameObject UIPanelBoard;
+    [SerializeField] GameObject[] Panels;
 
     //slider settings
     [SerializeField] VRSlider Resolution;
@@ -32,8 +34,9 @@ public class UIController : MonoBehaviour
     [SerializeField] VRSlider moutain_MinValue;
     [SerializeField] VRSlider moutain_Weight;
 
-
-
+    [SerializeField] AudioClip showUISFX;
+    [SerializeField] AudioClip hideUISFX;
+    [SerializeField] AudioSource audioSource;
     public GameObject ReviewPoint;
     public GameObject sheild;
 
@@ -47,9 +50,11 @@ public class UIController : MonoBehaviour
     public static UIController Instance { get; private set; }
 
     public bool isUISwitchable;
-
+    private bool isPanelEnabled;
+    
     private void Awake()
     {
+        isPanelEnabled = true;
         isUISwitchable = true;
         if (Instance == null)
         {
@@ -81,6 +86,8 @@ public class UIController : MonoBehaviour
                 generalInstruction.SetActive(true);
                 galaxyOrbit.SetActive(true);
                 prefabMenu.SetActive(true);
+                GestureDetector.Instance.onMenuOpenGestureRecognized += OpenUI;
+                GestureDetector.Instance.onMenuCloseGestureRecognized += CloseUI;
                 break;
             case UIstate.Selecting:
                 generalInstruction.SetActive(true);
@@ -120,6 +127,8 @@ public class UIController : MonoBehaviour
                 generalInstruction.SetActive(false);
                 galaxyOrbit.SetActive(false);
                 prefabMenu.SetActive(false);
+                GestureDetector.Instance.onMenuOpenGestureRecognized -= OpenUI;
+                GestureDetector.Instance.onMenuCloseGestureRecognized -= CloseUI;
                 break;
             case UIstate.Selecting:
                 generalInstruction.SetActive(false);
@@ -150,8 +159,59 @@ public class UIController : MonoBehaviour
 
     }
 
+    public void CloseUI()
+    {
+        if (isPanelEnabled)
+        {
+            //PlayMusic
+            //setthings to false
+            //dofloat
+            //Invoke
+            audioSource.PlayOneShot(hideUISFX);
+            foreach(GameObject panel in Panels)
+            {
+                panel.SetActive(false);
+            }
+            DOTween.Sequence()
+                .Append(UIPanelBoard.GetComponent<MeshRenderer>().material.DOFloat(1, "_ClipAmount", 1f))
+                .OnComplete(()=> {
+                    gameObject.SetActive(false);
+                });
+            Invoke("DisablePanelState", 1.1f);
+        }
+    }
+
+    public void OpenUI()
+    {
+        if (!isPanelEnabled)
+        {
+            audioSource.PlayOneShot(showUISFX);
+            gameObject.SetActive(true);
+            DOTween.Sequence()
+                .Append(UIPanelBoard.GetComponent<MeshRenderer>().material.DOFloat(0, "_ClipAmount", 1f))
+                .OnComplete(()=> {
+                    foreach (GameObject panel in Panels)
+                    {
+                        panel.SetActive(true);
+                    }
+                });
+            Invoke("EnablePanelState", 1.1f);
+        }
+    }
+
+    private void EnablePanelState() {
+        isPanelEnabled = true;
+    }
+
+    private void DisablePanelState()
+    {
+        isPanelEnabled = false;
+    }
+
     private void SubscribeShapeSettings()
     {
+        setupShapeSettingstoSlider(true);
+
         Resolution.onsliderChange += (value)=>currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated((int)value);
         Radius.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(value);
 
@@ -164,11 +224,12 @@ public class UIController : MonoBehaviour
         moutain_Persistence.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Persistence, value);
         moutain_MinValue.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Minvalue, value);
         moutain_Weight.onsliderChange += (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Weight, value);
-        setupShapeSettingstoSlider(true);
     }
 
     private void UnsubscribeShapeSettings()
     {
+        setupShapeSettingstoSlider(false);
+
         Resolution.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated((int)value);
         Radius.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(value);
 
@@ -181,7 +242,6 @@ public class UIController : MonoBehaviour
         moutain_Persistence.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Persistence, value);
         moutain_MinValue.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Minvalue, value);
         moutain_Weight.onsliderChange -= (value) => currentFocusPlanet.GetComponent<Planet>().OnShapeSettingsUpdated(Planet.TerrainType.Moutain, Planet.ParameterType.Weight, value);
-        setupShapeSettingstoSlider(false);
 
     }
 
@@ -189,6 +249,7 @@ public class UIController : MonoBehaviour
     {
         if (isEnter)
         {
+
             Resolution.SetValue(currentFocusPlanet.GetComponent<Planet>().GetShpaeSettingintPara());
             Radius.SetValue(currentFocusPlanet.GetComponent<Planet>().GetShapeSettingfloatPara());
             land_Strength.SetValue(currentFocusPlanet.GetComponent<Planet>().GetShapeSettingPara(Planet.TerrainType.Land, Planet.ParameterType.Strength));
@@ -237,23 +298,23 @@ public class UIController : MonoBehaviour
     }
 
 
-    public void switchtosettings(bool isToShapeSettings)
-    {
-        if (!isUISwitchable)
-        {
-            return;
-        }
+    //public void switchtosettings(bool isToShapeSettings)
+    //{
+    //    if (!isUISwitchable)
+    //    {
+    //        return;
+    //    }
 
-        isUISwitchable = false;
-        if (isToShapeSettings)
-        {
-            EnterUIState(UIstate.ShapeSettings);
-        }
-        else
-        {
-            EnterUIState(UIstate.ColorSettings);
-        }
-    }
+    //    isUISwitchable = false;
+    //    if (isToShapeSettings)
+    //    {
+    //        EnterUIState(UIstate.ShapeSettings);
+    //    }
+    //    else
+    //    {
+    //        EnterUIState(UIstate.ColorSettings);
+    //    }
+    //}
 
     public void Togeneral()
     {
@@ -265,13 +326,13 @@ public class UIController : MonoBehaviour
 
             DOTween.Sequence()
                 .Append(currentFocusPlanet.transform.DOMove(StartPoint, 2f).SetEase(Ease.InOutCubic))
-                .Join(currentFocusPlanet.transform.DOScale(Vector3.one * 1.5f, 3f).SetEase(Ease.InOutCubic))
+                .Join(currentFocusPlanet.transform.DOScale(Vector3.one, 3f).SetEase(Ease.InOutCubic))
                 .AppendCallback(() =>
                 {
                     ConfirmPanel.GetComponent<AudioSource>().Play();
                 })
-                .Join(ConfirmPanel.transform.DOScale(1.0f, 2f)).SetEase(Ease.InOutElastic)
-                .AppendInterval(5)
+                .Join(ConfirmPanel.transform.DOScale(1.0f, 2f)).SetEase(Ease.InSine)
+                .AppendInterval(2)
                 .Append(ConfirmPanel.transform.DOScale(0,1f).SetEase(Ease.InSine))
                 .OnComplete(() => {
                     ConfirmPanel.GetComponent<AudioSource>().Stop();

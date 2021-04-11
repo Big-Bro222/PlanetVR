@@ -23,11 +23,12 @@ public class VRSlider : MonoBehaviour
     private float _sliderValue;
     private float scale;
     private const int scaleNum=10;
-
-    void Start()
+    private void Awake()
     {
         scale = maxValue / scaleNum;
-        SetValue(sliderValue);
+    }
+    void Start()
+    {
         _sliderValue = sliderValue;
         sliderLength = Vector3.Distance(sliderRightTip.transform.position,sliderLeftTip.transform.position);
         GetComponent<ButtonListener>().proximityTrigger += OnButtonProximity;
@@ -42,10 +43,10 @@ public class VRSlider : MonoBehaviour
         {
             value = maxValue;
         }
-        int scaleProperty = Mathf.FloorToInt(value / scale);
+        int scaleProperty = Mathf.FloorToInt(value/scale);
         sliderValue = scale * scaleProperty;
         textMesh.text = (scale*scaleProperty).ToString();
-        sliderHandler.transform.position = sliderLeftTip.transform.position +(sliderRightTip.transform.position - sliderLeftTip.transform.position) * scaleProperty/ scaleNum;
+        sliderHandler.transform.position = sliderLeftTip.transform.position +(sliderRightTip.transform.position - sliderLeftTip.transform.position) * scaleProperty/scaleNum;
 
     }
 
@@ -74,7 +75,7 @@ public class VRSlider : MonoBehaviour
                 else
                 {
                     SetValue(0);
-                };
+                }
             }
         }
 

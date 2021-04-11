@@ -25,13 +25,9 @@ public class CubeDebugger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    OnButtonAction();
-        //}
+
     }
 
-   
 
     public virtual void OnButtonProximity()
     {

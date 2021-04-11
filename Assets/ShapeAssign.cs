@@ -8,11 +8,15 @@ public class ShapeAssign : MonoBehaviour
     [SerializeField] ShapeSettings shapeSettings;
     public void AssignShapeSettings()
     {
-        VRDebug.Instance.Log("AssignShape");
         Planet currentPlanet = UIController.Instance.currentFocusPlanet.GetComponent<Planet>();
+        Debug.Log("assign");
         currentPlanet.shapeSettings = shapeSettings;
         currentPlanet.OnAssignShapeSettingPrefab(shapeSettings);
     }
 
+    private void OnMouseDown()
+    {
+        AssignShapeSettings();
+    }
 
 }

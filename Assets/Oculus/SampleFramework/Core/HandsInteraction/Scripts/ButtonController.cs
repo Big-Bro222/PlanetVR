@@ -29,7 +29,7 @@ namespace OculusSampleFramework
 		[SerializeField] private ContactTest[] _contactTests = null;
 		// for positive side tests, the contact position must be on the positive side of the plane
 		// determined by this transform
-		[SerializeField] public Transform _buttonPlaneCenter = null;
+		[SerializeField] Transform _buttonPlaneCenter = null;
 
 		// make sure press is coming from "positive" side of button, i.e. above it
 		[SerializeField] private bool _makeSureToolIsOnPositiveSide = true;

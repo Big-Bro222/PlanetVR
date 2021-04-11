@@ -23,6 +23,12 @@ public class GestureDetector : MonoBehaviour
     public float threshold;
     private Gesture previousGesture;
     public UnityAction onGestureRecognized;
+    public UnityAction onMenuCloseGestureRecognized;
+    public UnityAction onMenuOpenGestureRecognized;
+
+
+    private enum LeftHandGestureState { OK, LOVE, NONE,RNROLL};
+    LeftHandGestureState leftHandGestureState;
 
     public static GestureDetector Instance { get; private set; }
     private void Awake()
@@ -41,13 +47,14 @@ public class GestureDetector : MonoBehaviour
     {
         LfingerBones = new List<OVRBone>(Lskeleton.Bones);
         RfingerBones = new List<OVRBone>(Rskeleton.Bones);
+        leftHandGestureState = LeftHandGestureState.NONE;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (LOKgestureRecognize())
+        if (LOKgestureRecognize()==LeftHandGestureState.OK)
         {
             if (ROKgestureRecognize())
             {
@@ -57,6 +64,13 @@ public class GestureDetector : MonoBehaviour
                 onGestureRecognized();
 #endif
             }
+        }
+        else if(LOKgestureRecognize()==LeftHandGestureState.LOVE)
+        {
+            onMenuCloseGestureRecognized();
+        }else if (LOKgestureRecognize() == LeftHandGestureState.RNROLL)
+        {
+            onMenuOpenGestureRecognized();
         }
     }
 
@@ -74,24 +88,44 @@ public class GestureDetector : MonoBehaviour
     //    gestureRecognize();
     //}
 
-    bool LOKgestureRecognize()
+    LeftHandGestureState LOKgestureRecognize()
     {
         //float currentMin = Mathf.Infinity;
-        float sumDistance = 0;
+        float OKsumDistance = 0;
+        float loveDistance = 0;
+        float rnrollDistance = 0;
+        if (LfingerBones == null)
+        {
+            return LeftHandGestureState.NONE;
+        }
         for (int i = 0; i < LfingerBones.Count; i++)
         {
             Vector3 currentData = Lskeleton.transform.InverseTransformPoint(LfingerBones[i].Transform.position);
             float distance = Vector3.Distance(currentData, gestures[0].fingerDatas[i]);
-            sumDistance += distance;
+            OKsumDistance += distance;
+
+            float distance2= Vector3.Distance(currentData, gestures[1].fingerDatas[i]);
+            loveDistance += distance2;
+
+            float distance3= Vector3.Distance(currentData, gestures[2].fingerDatas[i]);
+            rnrollDistance += distance3;
         }
 
-        if (sumDistance < threshold)
+        if (OKsumDistance < threshold)
         {
-            return true;
+            return LeftHandGestureState.OK;
+        }
+        else if(loveDistance<threshold)
+        {
+            return LeftHandGestureState.LOVE;
+        }
+        else if(rnrollDistance<threshold)
+        {
+            return LeftHandGestureState.RNROLL;
         }
         else
         {
-            return false;
+            return LeftHandGestureState.NONE;
         }
        
     }

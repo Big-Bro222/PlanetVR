@@ -27,31 +27,13 @@ public class RemoteButtonCreator : MonoBehaviour
 
     public void creatButtonComponent()
     {
+        Zone = transform.Find("Zone").gameObject;
         buttonController=gameObject.GetComponent<ButtonController>();
         parentSphereCollider = GetComponent<SphereCollider>();
 
-        gameObject.AddComponent<CubeDebugger>();
-        buttonController._buttonPlaneCenter = transform;
-
-        Zone = transform.Find("Zone").gameObject;
-        Zone.transform.localPosition = Vector3.zero;
-
-        ButtonTriggerZone triggerZone=Zone.GetComponent<ButtonTriggerZone>();
-        triggerZone._parentInteractableObj = gameObject;
-        Rigidbody rig=Zone.GetComponent<Rigidbody>();
-        rig.useGravity = true;
-        rig.isKinematic = true;
-
-        buttonController._proximityZone = Zone;
-        buttonController._contactZone = Zone;
-        buttonController._actionZone = Zone;
         childSphereCollider = Zone.GetComponent<SphereCollider>();
 
-        childSphereCollider.radius = parentSphereCollider.radius;
-        childSphereCollider.isTrigger = true;
-
-        gameObject.AddComponent<ButtonListener>();
-
+        childSphereCollider.radius = parentSphereCollider.radius*0.8f;
         gameObject.GetComponent<CubeDebugger>().enabled = false;
 
     }
