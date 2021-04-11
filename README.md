@@ -75,7 +75,7 @@ Build [HandUIScene](https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Scen
 #### Close UI
 [<img src="https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Pic/RNRoll.gif">]
 #### Open UI
-[<img src="https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Pic/Ok 20(2).gif">]
+[<img src="https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Pic/Ok%20(2).gif">]
 #### Confirm settings
 
 <!-- LICENSE -->
