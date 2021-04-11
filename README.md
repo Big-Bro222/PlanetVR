@@ -72,11 +72,11 @@ Build [HandUIScene](https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Scen
 ## Hand Gesture
 
 [<img src="https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Pic/Love.gif">]
-
-[<img src="https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Pic/Love.gif">]
-
-[<img src="https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Pic/Love.gif">]
-
+#### Close UI
+[<img src="https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Pic/RNRoll.gif">]
+#### Open UI
+[<img src="https://github.com/Big-Bro222/PlanetVR/blob/main/Assets/Pic/Ok 20(2).gif">]
+#### Confirm settings
 
 <!-- LICENSE -->
 ## License
