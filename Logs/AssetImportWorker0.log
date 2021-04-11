@@ -15,12 +15,12 @@ E:/Unity projects/PlanetVR
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-54639
+49813
 Successfully changed project path to: E:/Unity projects/PlanetVR
 E:/Unity projects/PlanetVR
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 818.61 ms, found 4 plugins.
-Preloading 1 native plugins for Editor in 13.56 ms.
+Refreshing native plugins compatible for Editor in 144.07 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 1.78 ms.
 Initialize engine version: 2020.3.0f1 (c7b5465681fb)
 [Subsystems] Discovering subsystems at path C:/Unity/2020.3.0f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path E:/Unity projects/PlanetVR/Assets
@@ -36,23 +36,739 @@ Initialize mono
 Mono path[0] = 'C:/Unity/2020.3.0f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Unity/2020.3.0f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Unity/2020.3.0f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56532
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56120
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Unity/2020.3.0f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Unity/2020.3.0f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
 Register platform support module: C:/Unity/2020.3.0f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.025531 seconds.
+Registered in 0.005986 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 420.43 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 111.79 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.06 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  4.886 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.008216 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 115.59 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.05 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+[XR] OculusXRPlugin: registering subsystems
+[XR] Unable to register display lifecyle provider: [1]
+[XR] Oculus Input lifecycle provider registered.
+[XR] Unable to register input lifecyle provider: [1]
+[XR] OVRP version 1.57.0
+Mono: successfully reloaded assembly
+- Completed reload, in  1.696 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 1.19 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.05 ms.
+Unloading 3758 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 195.3 MB.
+System memory in use after: 193.8 MB.
+
+Unloading 63 unused Assets to reduce memory usage. Loaded Objects now: 4188.
+Total: 4.916100 ms (FindLiveObjects: 0.604200 ms CreateObjectMapping: 0.258500 ms MarkObjects: 2.620000 ms  DeleteObjects: 1.431000 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Hand.vfx
+  artifactKey: Guid(922b6c8c793149242898b5d95a52e271) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Hand.vfx using Guid(922b6c8c793149242898b5d95a52e271) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efe7c93f89e56edfd82c0695081d801c') in 0.082379 seconds
+  Import took 0.092139 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.003889 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.61 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.475 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.70 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.24 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 178.1 MB.
+System memory in use after: 176.6 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4192.
+Total: 7.856100 ms (FindLiveObjects: 0.759200 ms CreateObjectMapping: 0.300500 ms MarkObjects: 5.014200 ms  DeleteObjects: 1.778400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.010528 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.31 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.843 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.44 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 178.2 MB.
+System memory in use after: 176.7 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4196.
+Total: 7.752800 ms (FindLiveObjects: 0.744500 ms CreateObjectMapping: 0.303900 ms MarkObjects: 4.357400 ms  DeleteObjects: 2.343900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.010963 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.11 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.05 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.190 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Refreshing native plugins compatible for Editor in 1.06 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.04 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 178.2 MB.
+System memory in use after: 176.7 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4200.
+Total: 5.090000 ms (FindLiveObjects: 0.406500 ms CreateObjectMapping: 0.179300 ms MarkObjects: 2.473600 ms  DeleteObjects: 2.029100 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 943.902115 seconds.
+  path: Assets/Prefab/ButtonShapeSettings.prefab
+  artifactKey: Guid(da298d1bf4725c3419762b7c1512990f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/ButtonShapeSettings.prefab using Guid(da298d1bf4725c3419762b7c1512990f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '82e9eba0a7ef561cb601002a0a6e2977') in 0.262350 seconds
+  Import took 0.273007 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000276 seconds.
+  path: Assets/Prefab/Planet1 (2).prefab
+  artifactKey: Guid(5b819e86c44d9854289587934fd692ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Planet1 (2).prefab using Guid(5b819e86c44d9854289587934fd692ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4607ad8dbd83802e3e19327740fcae0b') in 0.037461 seconds
+  Import took 0.046812 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000254 seconds.
+  path: Assets/Prefab/Planet1 (4).prefab
+  artifactKey: Guid(cd3662aa7e16f8243b8e7977939f87c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Planet1 (4).prefab using Guid(cd3662aa7e16f8243b8e7977939f87c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42a10ca461bc3250686999b92b1c9387') in 0.026691 seconds
+  Import took 0.041694 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000246 seconds.
+  path: Assets/Prefab/Planet1 (1).prefab
+  artifactKey: Guid(b6068c692e3d0444b9f33587b1d54cda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Planet1 (1).prefab using Guid(b6068c692e3d0444b9f33587b1d54cda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '696373270ed2c47b080b488e93e1cb27') in 0.019296 seconds
+  Import took 0.029295 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000843 seconds.
+  path: Assets/Prefab/Slider.prefab
+  artifactKey: Guid(3f9c9db41460f7d4495110eb4c2447a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Slider.prefab using Guid(3f9c9db41460f7d4495110eb4c2447a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '847225642480cd7d7e47fb6e2ad21db7') in 0.631635 seconds
+  Import took 0.641228 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000254 seconds.
+  path: Assets/Prefab/Planet1 (3).prefab
+  artifactKey: Guid(a7ce3b40b3885b44ca15909d11481ac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Planet1 (3).prefab using Guid(a7ce3b40b3885b44ca15909d11481ac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7d88b995fa72bd045a897bd48a8f04f') in 0.015062 seconds
+  Import took 0.025541 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000533 seconds.
+  path: Assets/Prefab/Planet1.prefab
+  artifactKey: Guid(1a99e243d5cd28e40bd78e1ecd0c1466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Planet1.prefab using Guid(1a99e243d5cd28e40bd78e1ecd0c1466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a330dadb95df0548e35cf1f7d234e9d3') in 0.017004 seconds
+  Import took 0.027697 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000293 seconds.
+  path: Assets/Prefab/Planet1 (5).prefab
+  artifactKey: Guid(4b14385ec750e5b4685aa4c8cfc1a7c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Planet1 (5).prefab using Guid(4b14385ec750e5b4685aa4c8cfc1a7c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b2da02a21d7341ed006446d1285ee28') in 0.025245 seconds
+  Import took 0.039765 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 47.605482 seconds.
+  path: Assets/Settings/ColorSettings/Planet1Color 1.asset
+  artifactKey: Guid(574da4911bca3c146b521507c0cbdfd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/ColorSettings/Planet1Color 1.asset using Guid(574da4911bca3c146b521507c0cbdfd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b506d82d9221264e50337564da374bfe') in 0.010556 seconds
+  Import took 0.018802 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000348 seconds.
+  path: Assets/Settings/ColorSettings/Planet1Color5.asset
+  artifactKey: Guid(0771ee033ad935449bcd6e319deef541) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/ColorSettings/Planet1Color5.asset using Guid(0771ee033ad935449bcd6e319deef541) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9515731f6861452e6866aff7fc5d2253') in 0.007778 seconds
+  Import took 0.017262 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000269 seconds.
+  path: Assets/Settings/ColorSettings/Planet1Color 2.asset
+  artifactKey: Guid(6557cde8523de89409fa1012f91dd683) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/ColorSettings/Planet1Color 2.asset using Guid(6557cde8523de89409fa1012f91dd683) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '78fea7424ad00199812a79feed1445c0') in 0.006802 seconds
+  Import took 0.016361 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000703 seconds.
+  path: Assets/Settings/ColorSettings/PlanetColor.asset
+  artifactKey: Guid(296f653f6337e9245bff502555f47268) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/ColorSettings/PlanetColor.asset using Guid(296f653f6337e9245bff502555f47268) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc0944fb12271fc53975ee497ada8473') in 0.007822 seconds
+  Import took 0.021441 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000264 seconds.
+  path: Assets/Settings/ColorSettings/Planet1Color 3.asset
+  artifactKey: Guid(183b8afc0fa4ac44397efdbdc76f13a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/ColorSettings/Planet1Color 3.asset using Guid(183b8afc0fa4ac44397efdbdc76f13a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bda5ca2e5fddb65fa35400cb360b85f3') in 0.011985 seconds
+  Import took 0.021323 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000250 seconds.
+  path: Assets/Settings/ColorSettings/PlanetColor.asset
+  artifactKey: Guid(296f653f6337e9245bff502555f47268) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/ColorSettings/PlanetColor.asset using Guid(296f653f6337e9245bff502555f47268) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc0944fb12271fc53975ee497ada8473') in 0.004181 seconds
+  Import took 0.014023 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.620841 seconds.
+  path: Assets/Settings/ColorSettings/PlanetColor 1.asset
+  artifactKey: Guid(a0555b6160aae65499f6891fdd50b9d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/ColorSettings/PlanetColor 1.asset using Guid(a0555b6160aae65499f6891fdd50b9d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e71f5bf3ea399656e58cfa4b3f0b2c2a') in 0.008752 seconds
+  Import took 0.017677 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.014354 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.40 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.042 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Refreshing native plugins compatible for Editor in 1.28 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.05 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 183.5 MB.
+System memory in use after: 181.9 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4250.
+Total: 7.162900 ms (FindLiveObjects: 0.481100 ms CreateObjectMapping: 0.238700 ms MarkObjects: 4.912400 ms  DeleteObjects: 1.529400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.013273 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.29 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.948 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Refreshing native plugins compatible for Editor in 1.29 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.06 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 183.5 MB.
+System memory in use after: 182.0 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4254.
+Total: 6.267100 ms (FindLiveObjects: 0.687400 ms CreateObjectMapping: 0.316700 ms MarkObjects: 3.531600 ms  DeleteObjects: 1.729400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.018075 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.33 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.06 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.607 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Refreshing native plugins compatible for Editor in 1.25 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.06 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 183.5 MB.
+System memory in use after: 182.0 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4258.
+Total: 5.605500 ms (FindLiveObjects: 0.451600 ms CreateObjectMapping: 0.225400 ms MarkObjects: 3.283300 ms  DeleteObjects: 1.643900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.011423 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.38 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.735 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.54 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 183.5 MB.
+System memory in use after: 182.0 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4262.
+Total: 6.156700 ms (FindLiveObjects: 0.564700 ms CreateObjectMapping: 0.292600 ms MarkObjects: 3.512600 ms  DeleteObjects: 1.784900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.011148 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.36 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.06 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.623 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Refreshing native plugins compatible for Editor in 1.32 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.06 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 183.5 MB.
+System memory in use after: 182.0 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4266.
+Total: 6.468100 ms (FindLiveObjects: 0.750100 ms CreateObjectMapping: 0.499800 ms MarkObjects: 3.436600 ms  DeleteObjects: 1.778900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.010726 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.35 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.06 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.538 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.29 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.06 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 183.5 MB.
+System memory in use after: 182.0 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4270.
+Total: 5.476500 ms (FindLiveObjects: 0.665400 ms CreateObjectMapping: 0.322100 ms MarkObjects: 2.849000 ms  DeleteObjects: 1.638300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 1187.465676 seconds.
+  path: Assets/Settings/ColorSettings/PlanetColor 1.asset
+  artifactKey: Guid(a0555b6160aae65499f6891fdd50b9d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/ColorSettings/PlanetColor 1.asset using Guid(a0555b6160aae65499f6891fdd50b9d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c6fcc1aa04b11805ca37b0bbf7f7010b') in 0.023061 seconds
+  Import took 0.033204 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.011704 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.64 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.067 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Refreshing native plugins compatible for Editor in 2.39 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 183.5 MB.
+System memory in use after: 182.0 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4274.
+Total: 8.720400 ms (FindLiveObjects: 0.704900 ms CreateObjectMapping: 0.653600 ms MarkObjects: 4.144200 ms  DeleteObjects: 3.215300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 168.943990 seconds.
+  path: Assets/PlanetTexture
+  artifactKey: Guid(b7c449a617f665346b71ea0473cd3561) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture using Guid(b7c449a617f665346b71ea0473cd3561) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e31866ea0f5b4680c9bd482ba61e1c8') in 0.020733 seconds
+  Import took 0.032441 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.075347 seconds.
+  path: Assets/PlanetTexture/1.png
+  artifactKey: Guid(0698ef497326d524497f5902f822e784) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/1.png using Guid(0698ef497326d524497f5902f822e784) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79440999d0a1d722997122d96e61c152') in 0.149185 seconds
+  Import took 0.161218 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000294 seconds.
+  path: Assets/PlanetTexture/5.png
+  artifactKey: Guid(9a27e44f94edcab4cb40a208ebc8a66d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/5.png using Guid(9a27e44f94edcab4cb40a208ebc8a66d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5d97edf11fb9d5bca02f838f19dab24') in 0.022662 seconds
+  Import took 0.035456 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000507 seconds.
+  path: Assets/PlanetTexture/3.png
+  artifactKey: Guid(abb88b7de8e5de548aa25b67243e4619) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/3.png using Guid(abb88b7de8e5de548aa25b67243e4619) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ead2749ff613b8333c1d1683d177b0a8') in 0.028746 seconds
+  Import took 0.040185 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000262 seconds.
+  path: Assets/PlanetTexture/4.png
+  artifactKey: Guid(958bf26a21624fa40ab9aaacd9f90398) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/4.png using Guid(958bf26a21624fa40ab9aaacd9f90398) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '452354ff732397ae295e3d72527a3fdf') in 0.022595 seconds
+  Import took 0.034226 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000304 seconds.
+  path: Assets/PlanetTexture/2.png
+  artifactKey: Guid(510c5f967f4211649ac55aa9e4e6f20b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/2.png using Guid(510c5f967f4211649ac55aa9e4e6f20b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0774393efea5608745acf2b12d3d3e20') in 0.021812 seconds
+  Import took 0.032008 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000284 seconds.
+  path: Assets/PlanetTexture/6.png
+  artifactKey: Guid(bd641d1093e557c4d8ab5e47c8d7dcc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/6.png using Guid(bd641d1093e557c4d8ab5e47c8d7dcc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fdd933f6e2eb71229cc3f0a7b3c1799c') in 0.023516 seconds
+  Import took 0.034834 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.184886 seconds.
+  path: Assets/PlanetTexture/1.png
+  artifactKey: Guid(0698ef497326d524497f5902f822e784) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/1.png using Guid(0698ef497326d524497f5902f822e784) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c55d0bfdbf063a80be4ba1dd10cf0e10') in 0.040900 seconds
+  Import took 0.052599 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000293 seconds.
+  path: Assets/PlanetTexture/5.png
+  artifactKey: Guid(9a27e44f94edcab4cb40a208ebc8a66d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/5.png using Guid(9a27e44f94edcab4cb40a208ebc8a66d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ddbb7c9879da1f8e869500206793a229') in 0.023998 seconds
+  Import took 0.034614 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000277 seconds.
+  path: Assets/PlanetTexture/3.png
+  artifactKey: Guid(abb88b7de8e5de548aa25b67243e4619) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/3.png using Guid(abb88b7de8e5de548aa25b67243e4619) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0f34df1af5e9d9fba09fac3563daf07') in 0.030862 seconds
+  Import took 0.043670 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000292 seconds.
+  path: Assets/PlanetTexture/4.png
+  artifactKey: Guid(958bf26a21624fa40ab9aaacd9f90398) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/4.png using Guid(958bf26a21624fa40ab9aaacd9f90398) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9537f6f5e2502475ee5d076be196bc7') in 0.040995 seconds
+  Import took 0.053079 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000330 seconds.
+  path: Assets/PlanetTexture/2.png
+  artifactKey: Guid(510c5f967f4211649ac55aa9e4e6f20b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/2.png using Guid(510c5f967f4211649ac55aa9e4e6f20b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b2790031cd635ac035471cbe732edcb') in 0.030913 seconds
+  Import took 0.040957 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000296 seconds.
+  path: Assets/PlanetTexture/6.png
+  artifactKey: Guid(bd641d1093e557c4d8ab5e47c8d7dcc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/6.png using Guid(bd641d1093e557c4d8ab5e47c8d7dcc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ac9d14e1a9d96ae76ad4af3cd5cc7bf') in 0.032947 seconds
+  Import took 0.046328 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 145.896527 seconds.
+  path: Assets/PlanetTexture/Materials
+  artifactKey: Guid(3bcd6503c46541847a29305a5cf33d73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/Materials using Guid(3bcd6503c46541847a29305a5cf33d73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b7749a725cb67cc2cf13e19cd5ca8ff6') in 0.010129 seconds
+  Import took 0.019355 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 76.229736 seconds.
+  path: Assets/PlanetTexture/Materials/1.mat
+  artifactKey: Guid(bc54438255dc9334db97323f64a8f6a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/PlanetTexture/Materials/1.mat using Guid(bc54438255dc9334db97323f64a8f6a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3dd420a9cf7a181b0f70bdfc45de640a') in 0.371495 seconds
+  Import took 0.382293 seconds .
+
+========================================================================
+Received Prepare
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Refreshing native plugins compatible for Editor in 17.04 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.06 ms.
+Unloading 56 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.2 MB.
+System memory in use after: 118.6 MB.
+
+Unloading 56 unused Assets to reduce memory usage. Loaded Objects now: 4372.
+Total: 8.053300 ms (FindLiveObjects: 1.041600 ms CreateObjectMapping: 0.551900 ms MarkObjects: 4.623400 ms  DeleteObjects: 1.834100 ms)
+
+========================================================================
+Received Prepare
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 81.83 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.37 ms.
+Unloading 56 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.2 MB.
+System memory in use after: 118.6 MB.
+
+Unloading 56 unused Assets to reduce memory usage. Loaded Objects now: 4372.
+Total: 109.842600 ms (FindLiveObjects: 16.454400 ms CreateObjectMapping: 9.200900 ms MarkObjects: 54.807800 ms  DeleteObjects: 29.366700 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.014665 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.97 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.11 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  3.001 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.46 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.12 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 184.0 MB.
+System memory in use after: 182.5 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4349.
+Total: 19.142200 ms (FindLiveObjects: 1.725200 ms CreateObjectMapping: 0.425500 ms MarkObjects: 6.013300 ms  DeleteObjects: 10.972200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.018946 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 2.31 ms, found 4 plugins.
 Preloading 1 native plugins for Editor in 0.17 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in 23.426 seconds
+- Completed reload, in  2.400 seconds
 Platform modules already initialized, skipping
-Registering precompiled user dll's ...
-Registered in 0.025409 seconds.
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524288) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 1.29 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.06 ms.
+Unloading 3569 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 184.0 MB.
+System memory in use after: 182.5 MB.
+
+Unloading 59 unused Assets to reduce memory usage. Loaded Objects now: 4353.
+Total: 7.197900 ms (FindLiveObjects: 1.324200 ms CreateObjectMapping: 0.453900 ms MarkObjects: 3.700600 ms  DeleteObjects: 1.715400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Prepare
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 17.71 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.05 ms.
+Unloading 56 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.0 MB.
+System memory in use after: 118.5 MB.
+
+Unloading 56 unused Assets to reduce memory usage. Loaded Objects now: 4353.
+Total: 6.054400 ms (FindLiveObjects: 0.647500 ms CreateObjectMapping: 0.258800 ms MarkObjects: 3.225100 ms  DeleteObjects: 1.920600 ms)
+
+========================================================================
+Received Prepare
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 23.00 ms, found 4 plugins.
+Preloading 1 native plugins for Editor in 0.06 ms.
+Unloading 56 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 120.0 MB.
+System memory in use after: 118.5 MB.
+
+Unloading 56 unused Assets to reduce memory usage. Loaded Objects now: 4353.
+Total: 11.269000 ms (FindLiveObjects: 1.647400 ms CreateObjectMapping: 0.249500 ms MarkObjects: 7.227400 ms  DeleteObjects: 2.142600 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

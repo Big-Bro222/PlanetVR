@@ -18,6 +18,8 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject shapeDetailMenu;
     [SerializeField] GameObject colorDetailMenu;
     [SerializeField] GameObject ConfirmPanel;
+    [SerializeField] GameObject UIPanelBoard;
+    [SerializeField] GameObject[] Panels;
 
     //slider settings
     [SerializeField] VRSlider Resolution;
@@ -32,8 +34,9 @@ public class UIController : MonoBehaviour
     [SerializeField] VRSlider moutain_MinValue;
     [SerializeField] VRSlider moutain_Weight;
 
-
-
+    [SerializeField] AudioClip showUISFX;
+    [SerializeField] AudioClip hideUISFX;
+    [SerializeField] AudioSource audioSource;
     public GameObject ReviewPoint;
     public GameObject sheild;
 
@@ -48,7 +51,7 @@ public class UIController : MonoBehaviour
 
     public bool isUISwitchable;
     private bool isPanelEnabled;
-
+    
     private void Awake()
     {
         isPanelEnabled = true;
@@ -156,21 +159,43 @@ public class UIController : MonoBehaviour
 
     }
 
-    private void CloseUI()
+    public void CloseUI()
     {
         if (isPanelEnabled)
         {
-            gameObject.SetActive(false);
-            Invoke("DisablePanelState", 1f);
+            //PlayMusic
+            //setthings to false
+            //dofloat
+            //Invoke
+            audioSource.PlayOneShot(hideUISFX);
+            foreach(GameObject panel in Panels)
+            {
+                panel.SetActive(false);
+            }
+            DOTween.Sequence()
+                .Append(UIPanelBoard.GetComponent<MeshRenderer>().material.DOFloat(1, "_ClipAmount", 1f))
+                .OnComplete(()=> {
+                    gameObject.SetActive(false);
+                });
+            Invoke("DisablePanelState", 1.1f);
         }
     }
 
-    private void OpenUI()
+    public void OpenUI()
     {
         if (!isPanelEnabled)
         {
-            gameObject.SetActive(false);
-            Invoke("EnablePanelState", 1f);
+            audioSource.PlayOneShot(showUISFX);
+            gameObject.SetActive(true);
+            DOTween.Sequence()
+                .Append(UIPanelBoard.GetComponent<MeshRenderer>().material.DOFloat(0, "_ClipAmount", 1f))
+                .OnComplete(()=> {
+                    foreach (GameObject panel in Panels)
+                    {
+                        panel.SetActive(true);
+                    }
+                });
+            Invoke("EnablePanelState", 1.1f);
         }
     }
 
@@ -301,20 +326,19 @@ public class UIController : MonoBehaviour
 
             DOTween.Sequence()
                 .Append(currentFocusPlanet.transform.DOMove(StartPoint, 2f).SetEase(Ease.InOutCubic))
-                .Join(currentFocusPlanet.transform.DOScale(Vector3.one * 1.5f, 3f).SetEase(Ease.InOutCubic))
+                .Join(currentFocusPlanet.transform.DOScale(Vector3.one, 3f).SetEase(Ease.InOutCubic))
                 .AppendCallback(() =>
                 {
                     ConfirmPanel.GetComponent<AudioSource>().Play();
                 })
                 .Join(ConfirmPanel.transform.DOScale(1.0f, 2f)).SetEase(Ease.InSine)
-                .AppendInterval(5)
+                .AppendInterval(2)
                 .Append(ConfirmPanel.transform.DOScale(0,1f).SetEase(Ease.InSine))
                 .OnComplete(() => {
                     ConfirmPanel.GetComponent<AudioSource>().Stop();
                     planetMovement.Ismoveable = true;
                     currentFocusPlanet.GetComponent<TrailRenderer>().enabled = true;
                     currentFocusPlanet.GetComponent<CubeDebugger>().enabled = true;
-                    currentFocusPlanet.GetComponent<Planet>().GenerateNewSettings();
                     currentFocusPlanet = null;
                 });
         }

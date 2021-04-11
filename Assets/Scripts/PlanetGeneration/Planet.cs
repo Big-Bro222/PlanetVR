@@ -41,30 +41,22 @@ public class Planet : MonoBehaviour
 
     private void Awake()
     {
-
+        Debug.Log(name);
         elevationMinMax = new MinMax();
         sphereCollider = GetComponent<SphereCollider>();
 
-        if (meshFilters == null || meshFilters.Length == 0)
-        {
-            meshFilters = new MeshFilter[6];
-        }
+        meshFilters = new MeshFilter[6];
         terrainFaces = new TerrainFace[6];
 
         PresetColor();
         PresetShape();
-        CalculateVectors();
-        GenerateMesh();
-        GenerateColours();
     }
 
     public void Start()
     {
-
-    }
-    private void OnEnable()
-    {
-        //GenerateNewSettings();
+        CalculateVectors();
+        GenerateMesh();
+        GenerateColours();
     }
 
     private void Update()

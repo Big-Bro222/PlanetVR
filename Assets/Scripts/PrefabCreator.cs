@@ -71,7 +71,6 @@ public class PrefabCreator : MonoBehaviour
         }
         else
         {
-            Debug.Log(name);
             GetComponent<CubeDebugger>().OnButtonAction();
         }
 

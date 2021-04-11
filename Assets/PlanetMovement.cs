@@ -20,8 +20,6 @@ public class PlanetMovement : MonoBehaviour
     {
         if (Ismoveable)
         {
-            //Debug.Log(Vector3.Distance(transform.position, UIController.Instance.OrbitCenter.transform.position));
-
             transform.RotateAround(UIController.Instance.OrbitCenter.transform.position, RotationWorldAxis, (Constantfloat / Radius) * Time.deltaTime);
         }
     }
