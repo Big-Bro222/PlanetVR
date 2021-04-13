@@ -93,7 +93,7 @@ Ze Qi - Ze.Qi@outlook.com
 
 Portfolio - [qi-uxportfolio.com](https://qi-uxportfolio.com)
 
-Project Link: [https://github.com/Big-Bro222/MRvis](https://github.com/Big-Bro222/MRvis)
+Project Link: [https://github.com/Big-Bro222/PlanetVR](https://github.com/Big-Bro222/PlanetVR)
 
 
 
