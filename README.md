@@ -59,7 +59,7 @@ The project is a VR application targeting on Oculus quest platform developed by 
 
 ### Built With
 
-This project is using Vuforia library for Augmented reality calibration and Photon Pun for building up the network.
+This project is using oculus integration as a begin point.
 * Unity 2020.3.0f
 * [Oculus integration 25.0](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022)
 
