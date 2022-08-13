@@ -1,14 +1,22 @@
-/************************************************************************************
-Copyright : Copyright (c) Facebook Technologies, LLC and its affiliates. All rights reserved.
-
-Your use of this SDK or tool is subject to the Oculus SDK License Agreement, available at
-https://developer.oculus.com/licenses/oculussdk/
-
-Unless required by applicable law or agreed to in writing, the Utilities SDK distributed
-under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
-ANY KIND, either express or implied. See the License for the specific language governing
-permissions and limitations under the License.
-************************************************************************************/
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * Licensed under the Oculus SDK License Agreement (the "License");
+ * you may not use the Oculus SDK except in compliance with the License,
+ * which is provided at the time of installation or download, or which
+ * otherwise accompanies this software in either electronic or hard copy form.
+ *
+ * You may obtain a copy of the License at
+ *
+ * https://developer.oculus.com/licenses/oculussdk/
+ *
+ * Unless required by applicable law or agreed to in writing, the Oculus SDK
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +30,7 @@ public class OVRGrabber : MonoBehaviour
     // Grip trigger thresholds for picking up objects, with some hysteresis.
     public float grabBegin = 0.55f;
     public float grabEnd = 0.35f;
-    public bool ismovable=true;
+
     // Demonstrates parenting the held object to the hand's transform when grabbed.
     // When false, the grabbed object is moved every FixedUpdate using MovePosition.
     // Note that MovePosition is required for proper physics simulation. If you set this to true, you can
@@ -67,7 +75,7 @@ public class OVRGrabber : MonoBehaviour
     protected Quaternion m_anchorOffsetRotation;
     protected Vector3 m_anchorOffsetPosition;
     protected float m_prevFlex;
-	public OVRGrabbable m_grabbedObj = null;
+	protected OVRGrabbable m_grabbedObj = null;
     protected Vector3 m_grabbedObjectPosOff;
     protected Quaternion m_grabbedObjectRotOff;
 	protected Dictionary<OVRGrabbable, int> m_grabCandidates = new Dictionary<OVRGrabbable, int>();
@@ -319,28 +327,24 @@ public class OVRGrabber : MonoBehaviour
 
     protected virtual void MoveGrabbedObject(Vector3 pos, Quaternion rot, bool forceTeleport = false)
     {
-
-        if (ismovable)
+        if (m_grabbedObj == null)
         {
-            if (m_grabbedObj == null)
-            {
-                return;
-            }
+            return;
+        }
 
-            Rigidbody grabbedRigidbody = m_grabbedObj.grabbedRigidbody;
-            Vector3 grabbablePosition = pos + rot * m_grabbedObjectPosOff;
-            Quaternion grabbableRotation = rot * m_grabbedObjectRotOff;
+        Rigidbody grabbedRigidbody = m_grabbedObj.grabbedRigidbody;
+        Vector3 grabbablePosition = pos + rot * m_grabbedObjectPosOff;
+        Quaternion grabbableRotation = rot * m_grabbedObjectRotOff;
 
-            if (forceTeleport)
-            {
-                grabbedRigidbody.transform.position = grabbablePosition;
-                grabbedRigidbody.transform.rotation = grabbableRotation;
-            }
-            else
-            {
-                grabbedRigidbody.MovePosition(grabbablePosition);
-                grabbedRigidbody.MoveRotation(grabbableRotation);
-            }
+        if (forceTeleport)
+        {
+            grabbedRigidbody.transform.position = grabbablePosition;
+            grabbedRigidbody.transform.rotation = grabbableRotation;
+        }
+        else
+        {
+            grabbedRigidbody.MovePosition(grabbablePosition);
+            grabbedRigidbody.MoveRotation(grabbableRotation);
         }
     }
 
